@@ -1120,12 +1120,16 @@ onMounted(() => {
   .nes-container {
     max-width: 90vw !important;
     padding: 12px !important;
-    font-size: 0.7rem; /* Increase text size */
-    line-height: 1.5;
+    font-size: 0.8rem; /* Increase text size further */
+    line-height: 1.6;
   }
   
   .nes-container .title {
-    font-size: 0.85rem !important; /* Increase title size */
+    font-size: 1rem !important; /* Larger title */
+  }
+
+  .helper-text {
+    font-size: 0.6rem !important; /* Smaller scroll text to fit one line */
   }
   
   /* Section titles */
