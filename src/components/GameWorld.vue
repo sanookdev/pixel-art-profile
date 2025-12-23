@@ -59,9 +59,30 @@ const handleScroll = () => {
 };
 
 const updateProgress = (progress) => {
-  // 5 levels, so divide progress into 5 segments
+  // 7 levels, so divide progress into 7 segments
   const level = Math.min(Math.floor(progress * 7), 6);
   currentLevel.value = level;
+  
+  // Scroll text
+  const scrollText = document.querySelector('.helper-text');
+  if (scrollText) {
+    if (window.scrollY > 50) {
+      scrollText.style.opacity = '0';
+    } else {
+      scrollText.style.opacity = '1';
+    }
+  }
+};
+
+// Mobile navigation
+const moveLevel = (direction) => {
+  const targetLevel = Math.max(0, Math.min(6, currentLevel.value + direction));
+  const targetY = targetLevel * window.innerHeight;
+  
+  window.scrollTo({
+    top: targetY,
+    behavior: 'smooth'
+  });
 };
 
 onMounted(() => {
@@ -346,6 +367,16 @@ onMounted(() => {
         :key="n" 
         :class="['progress-dot', { 'active': currentLevel >= n - 1 }]"
       ></div>
+    </div>
+    
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+      <button class="nes-btn is-primary nav-btn prev" @click="moveLevel(-1)" :disabled="currentLevel === 0">
+        &lt;
+      </button>
+      <button class="nes-btn is-primary nav-btn next" @click="moveLevel(1)" :disabled="currentLevel === 6">
+        &gt;
+      </button>
     </div>
   </div>
 </template>
@@ -891,8 +922,8 @@ onMounted(() => {
 }
 
 @keyframes victoryBounce {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+  0%, 100% { transform: scale(2.5) translateY(0) rotate(-5deg); }
+  50% { transform: scale(2.5) translateY(-20px) rotate(5deg); }
 }
 
 /* === CONFETTI === */
@@ -1131,7 +1162,7 @@ onMounted(() => {
   }
   
   .social-links .nes-icon {
-    transform: scale(0.6);
+    transform: scale(2);
   }
   
   .progress-indicator {
@@ -1147,6 +1178,55 @@ onMounted(() => {
   
   .email-text {
     font-size: 0.5rem;
+  }
+  
+  /* Mobile Layout Fixes */
+  .level-projects .content-layer,
+  .level-lifestyle .content-layer {
+    padding-top: 80px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .projects-container,
+  .gallery-container {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-bottom: 60px; /* Space for controls */
+  }
+  
+  /* Mobile Controls */
+  .mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
+  
+  .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+/* Desktop: Hide mobile controls */
+@media (min-width: 481px) {
+  .mobile-controls {
+    display: none;
   }
 }
 </style>
