@@ -77,7 +77,7 @@ const updateProgress = (progress) => {
 // Mobile navigation
 const moveLevel = (direction) => {
   const targetLevel = Math.max(0, Math.min(6, currentLevel.value + direction));
-  const targetY = targetLevel * window.innerHeight;
+  const targetY = targetLevel * window.innerWidth;
   
   window.scrollTo({
     top: targetY,
@@ -1181,6 +1181,7 @@ onMounted(() => {
   }
   
   /* Mobile Layout Fixes */
+  .level-skills .content-layer,
   .level-projects .content-layer,
   .level-lifestyle .content-layer {
     padding-top: 80px;
@@ -1188,6 +1189,7 @@ onMounted(() => {
     justify-content: flex-start;
   }
   
+  .skills-block,
   .projects-container,
   .gallery-container {
     max-height: calc(100vh - 120px);
@@ -1203,7 +1205,7 @@ onMounted(() => {
     bottom: 20px;
     left: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 2000;
   }
   
   .nav-btn {
