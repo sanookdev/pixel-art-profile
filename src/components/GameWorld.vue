@@ -22,6 +22,17 @@ let lastScrollY = 0;
 // Visited levels tracking
 const visitedLevels = ref(new Set([0])); // Level 0 visited by default
 
+// Image Modal State
+const selectedImage = ref(null);
+
+const openImage = (url) => {
+  selectedImage.value = url;
+};
+
+const closeImage = () => {
+  selectedImage.value = null;
+};
+
 // Lifestyle gallery images
 const lifestyleImages = [
   '023e6049-bf98-4b56-9d95-34e815620dc5.jpeg',
@@ -355,6 +366,7 @@ onMounted(() => {
                     :alt="`Relation ${index + 1}`"
                     class="gallery-img"
                     loading="lazy"
+                    @click="openImage(`/lifestyle/relations/${img}`)"
                   />
                 </div>
               </div>
@@ -369,6 +381,7 @@ onMounted(() => {
                     :alt="`Lifestyle ${index + 1}`"
                     class="gallery-img"
                     loading="lazy"
+                    @click="openImage(`/lifestyle/${img}`)"
                   />
                 </div>
               </div>
@@ -384,6 +397,7 @@ onMounted(() => {
                     :alt="`Cat ${index + 1}`"
                     class="gallery-img"
                     loading="lazy"
+                    @click="openImage(`/lifestyle/cats/${img}`)"
                   />
                 </div>
               </div>
@@ -468,6 +482,17 @@ onMounted(() => {
         &gt;
       </button>
     </div>
+
+    
+    <!-- Image Modal -->
+    <Transition name="fade">
+      <div v-if="selectedImage" class="image-modal-overlay" @click="closeImage">
+        <div class="image-modal-content" @click.stop>
+          <button class="modal-close nes-btn is-error" @click="closeImage">X</button>
+          <img :src="selectedImage" alt="Full Image" class="modal-image" />
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -797,6 +822,58 @@ onMounted(() => {
   image-rendering: -moz-crisp-edges;
   filter: contrast(1.1) saturate(0.9);
   transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+/* Image Modal Styles */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 90vh;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  z-index: 10000;
+  padding: 0 10px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .gallery-item:hover .gallery-img {
