@@ -85,6 +85,29 @@ const moveLevel = (direction) => {
   });
 };
 
+// Continuous movement logic
+const movementInterval = ref(null);
+
+const startMoving = (direction) => {
+  // Move immediately once
+  moveLevel(direction);
+  
+  // Clear any existing interval
+  if (movementInterval.value) clearInterval(movementInterval.value);
+  
+  // Start continuous movement
+  movementInterval.value = setInterval(() => {
+    moveLevel(direction);
+  }, 300); // 300ms delay between steps
+};
+
+const stopMoving = () => {
+  if (movementInterval.value) {
+    clearInterval(movementInterval.value);
+    movementInterval.value = null;
+  }
+};
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 
@@ -371,10 +394,26 @@ onMounted(() => {
     
     <!-- Mobile Controls -->
     <div class="mobile-controls">
-      <button class="nes-btn is-primary nav-btn prev" @click="moveLevel(-1)" :disabled="currentLevel === 0">
+      <button 
+        class="nes-btn is-primary nav-btn prev" 
+        @mousedown="startMoving(-1)"
+        @touchstart.prevent="startMoving(-1)"
+        @mouseup="stopMoving"
+        @mouseleave="stopMoving"
+        @touchend="stopMoving"
+        :disabled="currentLevel === 0"
+      >
         &lt;
       </button>
-      <button class="nes-btn is-primary nav-btn next" @click="moveLevel(1)" :disabled="currentLevel === 6">
+      <button 
+        class="nes-btn is-primary nav-btn next" 
+        @mousedown="startMoving(1)"
+        @touchstart.prevent="startMoving(1)"
+        @mouseup="stopMoving"
+        @mouseleave="stopMoving"
+        @touchend="stopMoving"
+        :disabled="currentLevel === 6"
+      >
         &gt;
       </button>
     </div>
@@ -1217,6 +1256,8 @@ onMounted(() => {
     justify-content: center;
     font-size: 1.2rem;
     opacity: 0.8;
+    touch-action: manipulation; /* Disable double-tap zoom */
+    user-select: none; /* Prevent text selection */
   }
   
   .nav-btn:disabled {
