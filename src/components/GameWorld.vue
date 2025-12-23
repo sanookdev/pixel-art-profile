@@ -1368,7 +1368,8 @@ onMounted(() => {
   /* Mobile Layout Fixes */
   .level-skills .content-layer,
   .level-projects .content-layer,
-  .level-lifestyle .content-layer {
+  .level-lifestyle .content-layer,
+  .level-contact .content-layer {
     padding-top: 80px;
     align-items: center;
     justify-content: flex-start;
