@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* ซ่อน Scroll แนวนอน (เราจะใช้ GSAP คุม) */
+    background-color: #202020;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
+
+/* ทำให้รูปไม่เบลอเวลาขยาย (Pixelated) */
+img {
+    image-rendering: pixelated;
+}

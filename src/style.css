@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "../node_modules/nes.css/css/nes.min.css";
+/* ใช้ NES.css */
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #212529;
+  /* สีพื้นหลังโทนเข้ม */
+  color: #fff;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ทำให้รูปภาพคมชัดแบบ Pixel Art ไม่เบลอเมื่อขยาย */
+img {
+  image-rendering: pixelated;
+}

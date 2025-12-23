@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #ccc;
+        }
+
+        img {
+            border: 2px solid red;
+            max-width: 100%;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1024px;
+            height: 1024px;
+            background: repeating-linear-gradient(to right, transparent 0 341px, red 341px 342px),
+                repeating-linear-gradient(to bottom, transparent 0 512px, blue 512px 513px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position:relative; width: 1024px; height: 1024px;">
+        <img src="/src/assets/sanookdev-walk.png">
+        <div class="grid-overlay"></div>
+    </div>
+</body>
+
+</html>
