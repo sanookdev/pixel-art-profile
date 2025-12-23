@@ -5,7 +5,6 @@ export const portfolioData = {
         role: "Software Developer",
         location: "Pathumthani, Thailand",
         bio: "You can call me Nook or Sanooker and now I work as a Computer Technical Officer, Professional Level at Education Technology, Faculty of Medicine, Thammasat University. I worked closely with personnel of Faculty to understand their needs, get requirements, meeting and developed a web-based application by choose the language and tools that are appropriate for the scope of system development.",
-        bio2: "I have prior experience UI/UX designing using Adobe XD. Other tools which I use are Adobe Photoshop and Illustrator.",
         hobbies: "Playing Basketball 🏀 and I have cats 🐈"
     },
     experience: [
@@ -83,10 +82,11 @@ export const portfolioData = {
     ],
     tools: ["Jenkins (Auto Deploy)", "PM2", "GitHub", "Git"],
     skills: {
-        languages: ["HTML5", "CSS3", "JavaScript", "PHP"],
-        frameworks: ["Vue.js", "React", "Laravel", "Node.js"],
-        tools: ["Adobe XD", "Photoshop", "Illustrator", "Bootstrap", "Git", "Jenkins", "Vercel", "Firebase", "PM2"],
-        OS: ["Linux", "Windows"]
+        languages: ["HTML5", "CSS3", "JavaScript", "PHP", "C++", "SQL"],
+        frameworks: ["Vue.js", "React", "Laravel", "Codeigniter 3", "Node.js"],
+        tools: ["Git", "Jenkins", "Vercel", "Firebase", "PM2"],
+        OS: ["Linux", "Windows"],
+        Design: ["Adobe XD", "Photoshop", "Illustrator"]
     },
     contact: {
         email: "nuk.warat@gmail.com",

@@ -19,6 +19,25 @@ const facingRight = ref(false);
 let scrollTimeout = null;
 let lastScrollY = 0;
 
+// Lifestyle gallery images
+const lifestyleImages = [
+  '023e6049-bf98-4b56-9d95-34e815620dc5.jpeg',
+  '089b429e-817e-4431-8c4c-79be59fe71af.jpeg',
+  '82b0106e-7111-44cb-bf74-718c076aace6.jpeg',
+  'a2a36df6-238c-435a-aa26-5d92d553f8cc.jpeg',
+  'cbb5f179-e2d1-4a17-811d-44a39adwqe846001.jpeg'
+];
+
+// Cat gallery images
+const catImages = [
+  '2db37770-969e-470a-bf7d-42c53a467a0b.jpeg',
+  '983f2743-5bb8-41c2-90bb-0f64dcd0b70c.jpeg',
+  'a0c6d223-974f-470f-bdc4-d3f6f87a4ff4.jpeg',
+  'bf457aa7-8eab-4d47-b1e5-8969e35f6879.jpeg',
+  'e2e58731-4da1-4a02-9007-a82af8ac5848.jpeg',
+  'ee34716c-a4ea-435b-a17f-4d12f9238c97.jpeg'
+];
+
 const handleScroll = () => {
   const currentScrollY = window.scrollY;
   
@@ -41,7 +60,7 @@ const handleScroll = () => {
 
 const updateProgress = (progress) => {
   // 5 levels, so divide progress into 5 segments
-  const level = Math.min(Math.floor(progress * 6), 5);
+  const level = Math.min(Math.floor(progress * 7), 6);
   currentLevel.value = level;
 };
 
@@ -83,13 +102,15 @@ onMounted(() => {
       
       <!-- LEVEL 1: START -->
       <section class="level level-start">
-        <ParallaxBackground theme="sky" />
+        <ParallaxBackground theme="meadow" />
         <FloatingElements type="butterflies" :count="6" />
-        <PixelGround theme="grass" />
         
         <div class="content-layer">
+          <div class="profile-logo">
+            <img src="/profile.png" alt="Profile" class="pixel-avatar" />
+          </div>
           <DialogueBox title="🎮 Welcome!" type="is-dark">
-            <p>Hi! I'm <span class="nes-text is-primary glow-text">{{ portfolioData.personal.name }}</span></p>
+            <p>Hi! I'm <span class="nes-text is-success glow-text">{{ portfolioData.personal.name }}</span></p>
             <p><i class="nes-icon coin is-small"></i> {{ portfolioData.personal.role }}</p>
             <p class="helper-text blink">> Scroll to Start Adventure</p>
           </DialogueBox>
@@ -106,12 +127,13 @@ onMounted(() => {
       <section class="level level-bio">
         <ParallaxBackground theme="forest" />
         <FloatingElements type="flowers" :count="8" />
-        <PixelGround theme="grass" />
         
         <div class="content-layer content-wrapper">
+          <h2 class="section-title nes-text is-success glow-title">
+            <i class="nes-icon star is-small"></i> About Me
+          </h2>
           <DialogueBox title="👋 Hello, I'm Warat Supaporn!" type="is-rounded">
             <p>{{ portfolioData.personal.bio }}</p>
-            <p style="margin-top: 0.8rem;">{{ portfolioData.personal.bio2 }}</p>
             <p style="margin-top: 0.8rem; font-style: italic;">My favourite hobbies is {{ portfolioData.personal.hobbies }}</p>
           </DialogueBox>
         </div>
@@ -119,9 +141,8 @@ onMounted(() => {
 
       <!-- LEVEL 3: TECH STACK -->
       <section class="level level-skills">
-        <ParallaxBackground theme="desert" />
+        <ParallaxBackground theme="beach" />
         <FloatingElements type="stars" :count="8" />
-        <PixelGround theme="sand" />
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
@@ -169,15 +190,24 @@ onMounted(() => {
                  </span>
                </div>
              </div>
+             
+             <!-- Design -->
+             <div class="skill-category">
+               <p class="category-label" style="color: #ff69b4;">🎨 Design</p>
+               <div class="skill-tags">
+                 <span v-for="skill in portfolioData.skills.Design" :key="skill" class="skill-tag design">
+                   {{ skill }}
+                 </span>
+               </div>
+             </div>
           </div>
         </div>
       </section>
 
       <!-- LEVEL 3: EXPERIENCE -->
       <section class="level level-exp">
-        <ParallaxBackground theme="cave" />
+        <ParallaxBackground theme="mountain" />
         <FloatingElements type="gems" :count="10" />
-        <PixelGround theme="stone" />
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
@@ -197,9 +227,8 @@ onMounted(() => {
 
       <!-- LEVEL 4: PROJECTS -->
       <section class="level level-projects">
-        <ParallaxBackground theme="night" />
-        <FloatingElements type="stars" :count="12" />
-        <PixelGround theme="stone" />
+        <ParallaxBackground theme="sunset" />
+        <FloatingElements type="coins" :count="12" />
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-primary glow-title">
@@ -226,11 +255,54 @@ onMounted(() => {
         </div>
       </section>
 
-      <!-- LEVEL 5: CONTACT -->
+      <!-- LEVEL 6: LIFESTYLE -->
+      <section class="level level-lifestyle">
+        <ParallaxBackground theme="desert" />
+        <FloatingElements type="stars" :count="6" />
+        
+        <div class="content-layer">
+          <h2 class="section-title nes-text is-warning glow-title">
+            <i class="nes-icon heart is-small"></i> My Gallery
+          </h2>
+          
+          <div class="gallery-container">
+            <!-- My Lifestyle Section -->
+            <div class="gallery-section">
+              <h3 class="gallery-subtitle nes-text is-primary">My Lifestyle</h3>
+              <div class="lifestyle-gallery">
+                <div class="gallery-item" v-for="(img, index) in lifestyleImages" :key="`life-${index}`">
+                  <img 
+                    :src="`/lifestyle/${img}`" 
+                    :alt="`Lifestyle ${index + 1}`"
+                    class="gallery-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- My Cats Section -->
+            <div class="gallery-section">
+              <h3 class="gallery-subtitle nes-text is-warning" style="margin-top: 20px;">My Cats 🐱</h3>
+              <div class="lifestyle-gallery">
+                <div class="gallery-item" v-for="(img, index) in catImages" :key="`cat-${index}`">
+                  <img 
+                    :src="`/lifestyle/cats/${img}`" 
+                    :alt="`Cat ${index + 1}`"
+                    class="gallery-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEVEL 7: CONTACT -->
       <section class="level level-contact">
-        <ParallaxBackground theme="sunset" />
+        <ParallaxBackground theme="night" />
         <FloatingElements type="hearts" :count="8" />
-        <PixelGround theme="castle" />
         
         <div class="content-layer">
           <div class="final-castle">
@@ -244,7 +316,7 @@ onMounted(() => {
             </div>
           </div>
           
-          <DialogueBox title="🏆 Quest Complete!" type="is-dark">
+          <DialogueBox title="🏆 The End!" type="is-dark">
               <p class="nes-text is-success" style = "text-align: center;">Know me more</p>
               <div class="social-links">
                   <a :href="portfolioData.contact.github" target="_blank" class="nes-icon github is-medium social-icon"></a>
@@ -270,7 +342,7 @@ onMounted(() => {
     <!-- Progress indicator -->
     <div class="progress-indicator">
       <div 
-        v-for="n in 6" 
+        v-for="n in 7" 
         :key="n" 
         :class="['progress-dot', { 'active': currentLevel >= n - 1 }]"
       ></div>
@@ -478,6 +550,176 @@ onMounted(() => {
   color: #e85151;
 }
 
+.skill-tag.design {
+  border-color: #ff69b4;
+  color: #ff69b4;
+}
+
+/* === PROFILE LOGO === */
+.profile-logo {
+  margin-bottom: -10px;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  position: relative;
+}
+
+.pixel-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  border: 4px solid #fff;
+  box-shadow: 
+    0 0 0 3px #333,
+    0 0 15px rgba(0, 200, 255, 0.6),
+    0 0 30px rgba(0, 200, 255, 0.4);
+  filter: contrast(1.1) saturate(0.8);
+  object-fit: cover;
+  animation: avatarGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes avatarGlow {
+  0% {
+    box-shadow: 
+      0 0 0 3px #333,
+      0 0 15px rgba(0, 200, 255, 0.6),
+      0 0 30px rgba(0, 200, 255, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 3px #333,
+      0 0 20px rgba(0, 200, 255, 0.8),
+      0 0 40px rgba(0, 200, 255, 0.6);
+  }
+}
+
+/* === LIFESTYLE GALLERY === */
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95vw;
+  max-height: 80vh;
+  padding: 10px;
+}
+
+.gallery-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.gallery-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 0 #000;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 15px;
+  border-radius: 4px;
+}
+
+.lifestyle-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.lifestyle-gallery .gallery-item {
+  width: 140px; 
+  height: 140px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  aspect-ratio: 1;
+}
+
+.gallery-item:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.gallery-item:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.gallery-item:hover {
+  transform: scale(1.1) rotate(0deg);
+  z-index: 10;
+  box-shadow: 
+    0 8px 30px rgba(0,0,0,0.4),
+    0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  filter: contrast(1.1) saturate(0.9);
+  transition: filter 0.3s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  filter: contrast(1.2) saturate(1.1);
+}
+
+/* === CAT BACKGROUND === */
+.cat-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.cat-half {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.cat-half::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.cat-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: contrast(1.2) saturate(0.7) brightness(0.9);
+}
+
+.cat-half.right .cat-bg-img {
+  transform: scaleX(-1);
+}
+
 /* === EXPERIENCE === */
 .timeline {
   display: flex;
@@ -525,7 +767,6 @@ onMounted(() => {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 85vw;
-  margin-top: -20px;
   align-items: flex-start;
 }
 
