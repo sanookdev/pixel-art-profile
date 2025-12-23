@@ -84,6 +84,7 @@ export const portfolioData = {
     skills: {
         languages: ["HTML5", "CSS3", "JavaScript", "PHP", "C++", "SQL"],
         frameworks: ["Vue.js", "React", "Laravel", "Codeigniter 3", "Node.js"],
+        database: ["MySQL", "PostgreSQL", "Firebase Realtime Database", "Firebase Firestore"],
         tools: ["Git", "Jenkins", "Vercel", "Firebase", "PM2"],
         OS: ["Linux", "Windows"],
         Design: ["Adobe XD", "Photoshop", "Canva"]
