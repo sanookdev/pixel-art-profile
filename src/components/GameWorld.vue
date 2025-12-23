@@ -345,6 +345,20 @@ onMounted(() => {
           </h2>
           
           <div class="gallery-container">
+             <!-- Relationships Section -->
+            <div class="gallery-section">
+              <h3 class="gallery-subtitle nes-text is-error" style="margin-top: 20px;">Relationships ❤️</h3>
+              <div class="lifestyle-gallery">
+                <div class="gallery-item" v-for="(img, index) in relationImages" :key="`rel-${index}`">
+                  <img 
+                    :src="`/lifestyle/relations/${img}`" 
+                    :alt="`Relation ${index + 1}`"
+                    class="gallery-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
             <!-- My Lifestyle Section -->
             <div class="gallery-section">
               <h3 class="gallery-subtitle nes-text is-primary">My Lifestyle</h3>
@@ -375,20 +389,7 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- Relationships Section -->
-            <div class="gallery-section">
-              <h3 class="gallery-subtitle nes-text is-error" style="margin-top: 20px;">Relationships ❤️</h3>
-              <div class="lifestyle-gallery">
-                <div class="gallery-item" v-for="(img, index) in relationImages" :key="`rel-${index}`">
-                  <img 
-                    :src="`/lifestyle/relations/${img}`" 
-                    :alt="`Relation ${index + 1}`"
-                    class="gallery-img"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </section>

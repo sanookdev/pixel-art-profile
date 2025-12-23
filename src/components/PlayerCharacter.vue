@@ -36,13 +36,8 @@ defineProps({
           </div>
           <div class="arms">
             <div class="arm left">
-              <!-- Sword attached to hand -->
-              <div class="hand-grip"></div>
-              <div class="sword">
-                <div class="sword-blade"></div>
-                <div class="sword-guard"></div>
-                <div class="sword-handle"></div>
-              </div>
+              <!-- Basketball -->
+              <div class="basketball"></div>
             </div>
             <div class="arm right"></div>
           </div>
@@ -268,40 +263,48 @@ defineProps({
 }
 
 .arm.left {
-  transform: rotate(-15deg);
+  transform: rotate(30deg); /* Angled forward for dribbling */
+  background: #fcd8b5; /* Skin color arm */
 }
 
-/* Sword attached to left hand */
-.sword {
+/* Basketball */
+.basketball {
   position: absolute;
-  bottom: -2px;
-  left: -18px;
-  transform: rotate(-50deg);
-  z-index: 15;
-}
-
-.sword-blade {
-  width: 6px;
-  height: 30px;
-  background: linear-gradient(90deg, #9ca3af 0%, #e5e7eb 50%, #9ca3af 100%);
-  border-radius: 2px 2px 1px 1px;
-  box-shadow: 0 0 8px rgba(135, 206, 235, 0.8);
-}
-
-.sword-guard {
+  bottom: -4px;
+  left: -4px;
   width: 14px;
-  height: 4px;
-  background: #fbbf24;
-  margin-left: -4px;
-  border-radius: 1px;
+  height: 14px;
+  background: radial-gradient(circle at 4px 4px, #fdba74 0%, #f97316 60%, #ea580c 100%);
+  border-radius: 50%;
+  border: 1px solid #9a3412;
+  z-index: 20;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  /* Counter-rotate the ball so translateY acts vertically */
+  transform: rotate(-30deg);
 }
 
-.sword-handle {
-  width: 5px;
-  height: 8px;
-  background: #78350f;
-  margin-left: 0px;
-  border-radius: 0 0 2px 2px;
+.basketball::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  border-right-color: #7c2d12;
+  transform: rotate(45deg);
+  opacity: 0.8;
+}
+
+.basketball::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  background: #7c2d12;
+  transform: rotate(-30deg);
+  opacity: 0.8;
 }
 
 .hand-grip {
@@ -368,7 +371,24 @@ defineProps({
 
 /* Walking Animation */
 .hero.walking .arm.left {
-  animation: swingSwordArm 0.4s ease-in-out infinite alternate;
+  animation: dribbleArm 0.6s ease-in-out infinite;
+}
+
+.hero.walking .basketball {
+  animation: dribbleBall 0.6s ease-in-out infinite;
+}
+
+@keyframes dribbleArm {
+  0%, 100% { transform: rotate(30deg); }
+  50% { transform: rotate(45deg); }
+}
+
+@keyframes dribbleBall {
+  0% { transform: rotate(-30deg) translateY(0); }
+  45% { transform: rotate(-30deg) translateY(20px) scale(0.9, 1.1); } /* Stretch when falling */
+  50% { transform: rotate(-30deg) translateY(22px) scale(1.1, 0.9); } /* Squash on impact */
+  55% { transform: rotate(-30deg) translateY(20px) scale(0.9, 1.1); } /* Stretch when rising */
+  100% { transform: rotate(-30deg) translateY(0); }
 }
 
 .hero.walking .arm.right {
@@ -385,11 +405,6 @@ defineProps({
 
 .hero.walking .pixel-character {
   animation: bounce 0.2s ease-in-out infinite;
-}
-
-@keyframes swingSwordArm {
-  from { transform: rotate(-40deg); }
-  to { transform: rotate(-20deg); }
 }
 
 @keyframes swingArm {
