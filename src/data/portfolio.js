@@ -4,14 +4,14 @@ export const portfolioData = {
         nickname: "Sanooker",
         role: "Software Developer",
         location: "Pathumthani, Thailand",
-        bio: "You can call me Nook or Sanooker and now I work as a Software Developer at Education Technology, Faculty of Medicine, Thammasat University. I worked closely with personnel of Faculty to understand their needs, get requirements, meeting and developed a web-based application by choose the language and tools that are appropriate for the scope of system development.",
+        bio: "You can call me Nook or Sanooker and now I work as a Computer Technical Officer, Professional Level at Education Technology, Faculty of Medicine, Thammasat University. I worked closely with personnel of Faculty to understand their needs, get requirements, meeting and developed a web-based application by choose the language and tools that are appropriate for the scope of system development.",
         bio2: "I have prior experience UI/UX designing using Adobe XD. Other tools which I use are Adobe Photoshop and Illustrator.",
         hobbies: "Playing Basketball 🏀 and I have cats 🐈"
     },
     experience: [
         {
             id: 1,
-            role: "Software Developer",
+            role: "Computer Technical Officer, Professional Level",
             company: "Faculty of Medicine, Thammasat University",
             period: "Nov 2020 – Present",
             description: "Developing and maintaining educational platforms, working with various departments."
