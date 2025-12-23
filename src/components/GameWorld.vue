@@ -19,6 +19,9 @@ const facingRight = ref(false);
 let scrollTimeout = null;
 let lastScrollY = 0;
 
+// Visited levels tracking
+const visitedLevels = ref(new Set([0])); // Level 0 visited by default
+
 // Lifestyle gallery images
 const lifestyleImages = [
   '023e6049-bf98-4b56-9d95-34e815620dc5.jpeg',
@@ -63,6 +66,26 @@ const updateProgress = (progress) => {
   const level = Math.min(Math.floor(progress * 7), 6);
   currentLevel.value = level;
   
+  // Animation Trigger logic
+  if (!visitedLevels.value.has(level)) {
+    visitedLevels.value.add(level);
+    
+    // Animate content for this level
+    const content = document.querySelector(`.level:nth-child(${level + 1}) .content-layer`);
+    if (content) {
+      gsap.fromTo(content, 
+        { y: -100, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.8, 
+          ease: "bounce.out",
+          overwrite: true
+        }
+      );
+    }
+  }
+
   // Scroll text
   const scrollText = document.querySelector('.helper-text');
   if (scrollText) {
@@ -464,6 +487,12 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  opacity: 0; /* Hidden initially for animation */
+}
+
+/* First level visible by default */
+.level:first-child .content-layer {
+  opacity: 1;
 }
 
 .decorative-elements {
@@ -1079,16 +1108,24 @@ onMounted(() => {
     transform: scale(0.8);
     transform-origin: bottom left;
   }
+
+  /* Welcome Screen Fixes */
+  .pixel-avatar {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 20px !important; /* Fix overlap */
+  }
   
   /* DialogueBox */
   .nes-container {
     max-width: 90vw !important;
     padding: 12px !important;
-    font-size: 0.6rem;
+    font-size: 0.7rem; /* Increase text size */
+    line-height: 1.5;
   }
   
   .nes-container .title {
-    font-size: 0.7rem !important;
+    font-size: 0.85rem !important; /* Increase title size */
   }
   
   /* Section titles */
