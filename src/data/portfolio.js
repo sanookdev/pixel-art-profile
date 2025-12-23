@@ -86,7 +86,7 @@ export const portfolioData = {
         frameworks: ["Vue.js", "React", "Laravel", "Codeigniter 3", "Node.js"],
         tools: ["Git", "Jenkins", "Vercel", "Firebase", "PM2"],
         OS: ["Linux", "Windows"],
-        Design: ["Adobe XD", "Photoshop", "Illustrator"]
+        Design: ["Adobe XD", "Photoshop", "Canva"]
     },
     contact: {
         email: "nuk.warat@gmail.com",
