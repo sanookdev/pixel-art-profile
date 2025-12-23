@@ -41,6 +41,18 @@ const catImages = [
   'ee34716c-a4ea-435b-a17f-4d12f9238c97.jpeg'
 ];
 
+// Relation gallery images
+const relationImages = [
+  '3ef58e0a-fa60-4652-96ec-43331ab342e5.jpeg',
+  '68fc48e1-1ce5-46ec-aad7-9f87551abac8.jpeg',
+  '6ae78126-2cf6-45e4-bb7a-f2db97a885de.jpeg',
+  '99818099-a1c2-48b3-82be-1838aa4bdb38.jpeg',
+  '9ab55c73-ccc5-4a86-91fd-83598f9f998d.jpeg',
+  '9f877ff8-b5e7-4f86-bda4-f77b560e6664.jpeg',
+  'd1d0315b-bfaa-45e3-aaf4-2885634c3ce8.jpeg',
+  'fd4808bd-a178-4593-9c4e-dfcd191d18c2.jpeg'
+];
+
 const handleScroll = () => {
   const currentScrollY = window.scrollY;
   
@@ -356,6 +368,21 @@ onMounted(() => {
                   <img 
                     :src="`/lifestyle/cats/${img}`" 
                     :alt="`Cat ${index + 1}`"
+                    class="gallery-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Relationships Section -->
+            <div class="gallery-section">
+              <h3 class="gallery-subtitle nes-text is-error" style="margin-top: 20px;">Relationships ❤️</h3>
+              <div class="lifestyle-gallery">
+                <div class="gallery-item" v-for="(img, index) in relationImages" :key="`rel-${index}`">
+                  <img 
+                    :src="`/lifestyle/relations/${img}`" 
+                    :alt="`Relation ${index + 1}`"
                     class="gallery-img"
                     loading="lazy"
                   />
