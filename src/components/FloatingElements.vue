@@ -22,8 +22,17 @@ const getEmoji = (type) => {
     mushrooms: '🍄',
     gems: '💎',
     flowers: '🌸',
-    butterflies: '🦋'
-  };
+    butterflies: '🦋',
+    coffee: '☕',
+    phone: '📱',
+    laptop: '💻',
+    tablet: '📱',
+    mouse: '🖱️',
+    keyboard: '⌨️',
+    codetag:'</>',
+    PHP:'🐘',
+    atom:'⚛️'
+};
   return emojiMap[type] || '⭐';
 };
 

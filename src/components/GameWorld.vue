@@ -1388,7 +1388,7 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     position: fixed;
-    bottom: 20px;
+    bottom: 120px;
     left: 20px;
     right: 20px;
     z-index: 2000;
