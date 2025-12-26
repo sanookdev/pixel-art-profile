@@ -129,12 +129,13 @@ const updateProgress = (progress) => {
 
 // Mobile navigation
 // Factor to slow down the scroll/movement speed (Higher = Slower)
-const SCROLL_SPEED_FACTOR = 1.5;
+// Car mode is faster (lower factor), walking mode is slower (higher factor)
+const getScrollSpeedFactor = () => isFlying.value ? 0.8 : 1.5;
 
 const moveLevel = (direction) => {
   const targetLevel = Math.max(0, Math.min(6, currentLevel.value + direction));
   // Adjust targetY based on the speed factor
-  const targetY = targetLevel * window.innerWidth * SCROLL_SPEED_FACTOR;
+  const targetY = targetLevel * window.innerWidth * getScrollSpeedFactor();
   
   window.scrollTo({
     top: targetY,
@@ -181,7 +182,7 @@ onMounted(() => {
         trigger: container.value,
         start: "top top",
         // Increase the scroll distance required to complete the movement
-        end: () => `+=${getScrollDistance() * SCROLL_SPEED_FACTOR}`,
+        end: () => `+=${getScrollDistance() * getScrollSpeedFactor()}`,
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,

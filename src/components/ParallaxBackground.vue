@@ -440,136 +440,153 @@ onMounted(() => {
   transform: translateY(-50%);
 }
 
-/* === THEME VARIATIONS === */
+/* === THEME VARIATIONS - ALL DARK MODE === */
 
-/* Meadow - Bright sunny day */
+/* Meadow - Dark night meadow */
 .theme-meadow .sky-layer {
   background: linear-gradient(180deg, 
-    #87CEEB 0%, 
-    #B0E2FF 40%,
-    #E8F5E9 100%
+    #0a0a1a 0%, 
+    #151530 40%,
+    #1e2140 100%
   );
 }
 
 .theme-meadow .ground-layer {
-  background: linear-gradient(180deg, #7CB342 0%, #558B2F 100%);
+  background: linear-gradient(180deg, #1a2f1a 0%, #0d1f0d 100%);
 }
 
-/* Forest - Dense green */
+.theme-meadow .sun {
+  background: #c4a747;
+  box-shadow: 0 0 30px #c4a747, 0 0 60px rgba(196, 167, 71, 0.3);
+  opacity: 0.7;
+}
+
+/* Forest - Dark dense forest */
 .theme-forest .sky-layer {
   background: linear-gradient(180deg, 
-    #81C784 0%, 
-    #A5D6A7 40%,
-    #C8E6C9 100%
+    #0a1a0a 0%, 
+    #1a2a1a 40%,
+    #2a3a2a 100%
   );
 }
 
 .theme-forest .ground-layer {
-  background: linear-gradient(180deg, #33691E 0%, #1B5E20 100%);
+  background: linear-gradient(180deg, #0d1f0d 0%, #061006 100%);
 }
 
 .theme-forest .sun {
-  opacity: 0.6;
-  filter: blur(2px);
+  opacity: 0.3;
+  filter: blur(4px);
+  background: #6a6a4a;
 }
 
-/* Mountain - Rocky terrain */
+.theme-forest .pixel-cloud .cloud-part {
+  background: rgba(50, 70, 50, 0.5);
+}
+
+/* Mountain - Dark rocky terrain */
 .theme-mountain .sky-layer {
   background: linear-gradient(180deg, 
-    #90CAF9 0%, 
-    #BBDEFB 50%,
-    #E3F2FD 100%
+    #0d1520 0%, 
+    #1a2535 50%,
+    #253545 100%
   );
 }
 
 .theme-mountain .ground-layer {
-  background: linear-gradient(180deg, #78909C 0%, #546E7A 100%);
+  background: linear-gradient(180deg, #2a3a4a 0%, #1a2530 100%);
 }
 
 .theme-mountain .mountain-layer.far {
   background: 
-    linear-gradient(130deg, transparent 40%, #78909C 40%) 0 100%,
-    linear-gradient(230deg, transparent 40%, #607D8B 40%) 0 100%;
+    linear-gradient(130deg, transparent 40%, #3a4a5a 40%) 0 100%,
+    linear-gradient(230deg, transparent 40%, #2a3a4a 40%) 0 100%;
   background-size: 180px 200px;
   height: 220px;
   opacity: 0.9;
 }
 
-/* Sunset - Orange/pink sky */
+.theme-mountain .sun {
+  opacity: 0.5;
+  background: #8a8a6a;
+}
+
+/* Sunset - Dark sunset */
 .theme-sunset .sky-layer {
   background: linear-gradient(180deg, 
-    #FF8A65 0%, 
-    #FFAB91 30%,
-    #FFCCBC 60%,
-    #FBE9E7 100%
+    #1a0a0a 0%, 
+    #2a1515 30%,
+    #3a2020 60%,
+    #2a1a1a 100%
   );
 }
 
 .theme-sunset .sun {
-  background: #FF5722;
-  box-shadow: 0 0 60px #FF5722, 0 0 120px rgba(255, 87, 34, 0.5);
+  background: #8a4020;
+  box-shadow: 0 0 40px #8a4020, 0 0 80px rgba(138, 64, 32, 0.4);
   top: 25%;
   width: 70px;
   height: 70px;
+  opacity: 0.8;
 }
 
 .theme-sunset .ground-layer {
-  background: linear-gradient(180deg, #8D6E63 0%, #5D4037 100%);
+  background: linear-gradient(180deg, #2a1a1a 0%, #1a0f0f 100%);
 }
 
 .theme-sunset .pixel-cloud .cloud-part {
-  background: #FFCCBC;
+  background: rgba(80, 40, 40, 0.5);
 }
 
-/* Night - Dark starry sky */
+/* Night - Dark starry sky (already dark) */
 .theme-night .sky-layer {
   background: linear-gradient(180deg, 
-    #0D1B2A 0%, 
-    #1B263B 40%,
-    #415A77 100%
+    #050510 0%, 
+    #0a0a1a 40%,
+    #151525 100%
   );
 }
 
 .theme-night .ground-layer {
-  background: linear-gradient(180deg, #1B3A4B 0%, #0D1B2A 100%);
+  background: linear-gradient(180deg, #0a1520 0%, #050a10 100%);
 }
 
 .theme-night .pixel-tree.left.t1,
 .theme-night .pixel-tree.right.t1 {
-  border-bottom-color: #1B4332;
+  border-bottom-color: #0a1a10;
 }
 
 .theme-night .pixel-tree.left.t2,
 .theme-night .pixel-tree.right.t2 {
-  border-bottom-color: #2D6A4F;
+  border-bottom-color: #152a1f;
 }
 
 .theme-night .path-layer {
-  background: linear-gradient(180deg, #37474F 0%, #263238 100%);
-  border-top-color: #455A64;
+  background: linear-gradient(180deg, #1a2530 0%, #0a1520 100%);
+  border-top-color: #253545;
 }
 
 .theme-night .path-layer::before {
   background: repeating-linear-gradient(
     90deg,
-    #546E7A 0px,
-    #546E7A 30px,
+    #2a3a4a 0px,
+    #2a3a4a 30px,
     transparent 30px,
     transparent 50px
   );
 }
 
-/* Beach - Sandy with ocean */
+/* Beach - Dark night beach */
 .theme-beach .sky-layer {
   background: linear-gradient(180deg, 
-    #4FC3F7 0%, 
-    #81D4FA 40%,
-    #B3E5FC 100%
+    #0a1525 0%, 
+    #152030 40%,
+    #1a2a3a 100%
   );
 }
 
 .theme-beach .ground-layer {
-  background: linear-gradient(180deg, #FFE082 0%, #FFCA28 100%);
+  background: linear-gradient(180deg, #3a3520 0%, #2a2515 100%);
 }
 
 .theme-beach .water-layer {
@@ -578,9 +595,9 @@ onMounted(() => {
   left: 0;
   right: 0;
   background: linear-gradient(180deg, 
-    #4FC3F7 0%,
-    #29B6F6 50%,
-    #03A9F4 100%
+    #1a3040 0%,
+    #152535 50%,
+    #0a1a25 100%
   );
   border-radius: 0;
   animation: waves 3s ease-in-out infinite;
@@ -592,29 +609,34 @@ onMounted(() => {
 }
 
 .theme-beach .path-layer {
-  background: linear-gradient(180deg, #FFECB3 0%, #FFE082 100%);
-  border-top-color: #FFF8E1;
+  background: linear-gradient(180deg, #2a2515 0%, #1a1a10 100%);
+  border-top-color: #3a3520;
 }
 
 .theme-beach .path-layer::before {
   display: none;
 }
 
-/* Desert theme */
+.theme-beach .sun {
+  background: #4a4a3a;
+  opacity: 0.4;
+}
+
+/* Desert - Dark night desert */
 .theme-desert .sky-layer {
   background: linear-gradient(180deg, 
-    #FFEB3B 0%, 
-    #FFF59D 40%,
-    #FFFDE7 100%
+    #1a1510 0%, 
+    #2a2015 40%,
+    #3a2a1a 100%
   );
 }
 
 .theme-desert .ground-layer {
-  background: linear-gradient(180deg, #D7CCC8 0%, #A1887F 100%);
+  background: linear-gradient(180deg, #2a2520 0%, #1a1a15 100%);
 }
 
 .theme-desert .path-layer {
-  background: linear-gradient(180deg, #BCAAA4 0%, #8D6E63 100%);
+  background: linear-gradient(180deg, #252015 0%, #1a1510 100%);
 }
 
 .theme-desert .pixel-tree {
@@ -624,8 +646,13 @@ onMounted(() => {
 .theme-desert .mountain-layer.far,
 .theme-desert .mountain-layer.mid {
   background: 
-    linear-gradient(135deg, transparent 50%, #D7CCC8 50%) 0 100%,
-    linear-gradient(225deg, transparent 50%, #BCAAA4 50%) 0 100%;
+    linear-gradient(135deg, transparent 50%, #3a3025 50%) 0 100%,
+    linear-gradient(225deg, transparent 50%, #2a251a 50%) 0 100%;
   background-size: 120px 100px;
+}
+
+.theme-desert .sun {
+  background: #6a5a3a;
+  opacity: 0.5;
 }
 </style>
