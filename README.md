@@ -6,7 +6,7 @@ A retro-style pixel art portfolio website featuring a horizontal scrolling game 
 
 ## 🖥️ Live Demo
 
-[View Portfolio](https://sanookdev.github.io/pixel-art-profile/) *(Update with your deployed URL)*
+[View Portfolio](https://warat-supaporn.vercel.app) *(Update with your deployed URL)*
 
 ## 📸 Preview
 
