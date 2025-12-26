@@ -7,112 +7,170 @@ defineProps({
   facingRight: {
     type: Boolean,
     default: true
+  },
+  isFlying: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
 
 <template>
   <div :class="['character-wrapper', { 'facing-left': !facingRight }]">
-    <!-- CSS Pixel Art Hero - Basketball Player with Sword -->
-    <div :class="['hero', { 'walking': isMoving }]">
-      <div class="pixel-character">
-        <!-- Head -->
-        <div class="head">
-          <div class="hair"></div>
-          <div class="face">
-            <div class="eyes">
-              <span class="eye"></span>
-              <span class="eye"></span>
+    <!-- WALKING MODE - Show characters -->
+    <template v-if="!isFlying">
+      <!-- CSS Pixel Art Hero - Basketball Player with Sword -->
+      <div :class="['hero', { 'walking': isMoving }]">
+        <div class="pixel-character">
+          <!-- Head -->
+          <div class="head">
+            <div class="hair"></div>
+            <div class="face">
+              <div class="eyes">
+                <span class="eye"></span>
+                <span class="eye"></span>
+              </div>
+              <div class="mouth"></div>
             </div>
-            <div class="mouth"></div>
           </div>
-        </div>
-        
-        <!-- Body - Basketball Jersey -->
-        <div class="body">
-          <div class="jersey">
-            <div class="jersey-stripes"></div>
-            <div class="jersey-number">8</div>
-          </div>
-          <div class="arms">
-            <div class="arm left">
-              <!-- Basketball -->
-              <div class="basketball"></div>
+          
+          <!-- Body - Basketball Jersey -->
+          <div class="body">
+            <div class="jersey">
+              <div class="jersey-stripes"></div>
+              <div class="jersey-number">8</div>
             </div>
-            <div class="arm right"></div>
+            <div class="arms">
+              <div class="arm left">
+                <!-- Basketball -->
+                <div class="basketball"></div>
+              </div>
+              <div class="arm right"></div>
+            </div>
           </div>
-        </div>
-        
-        <!-- Basketball Shorts -->
-        <div class="shorts">
-          <div class="short left"></div>
-          <div class="short right"></div>
-        </div>
-        
-        <!-- Legs -->
-        <div class="legs">
-          <div class="leg left"></div>
-          <div class="leg right"></div>
-        </div>
-        
-        <!-- Shoes -->
-        <div class="shoes">
-          <div class="shoe left"></div>
-          <div class="shoe right"></div>
+          
+          <!-- Basketball Shorts -->
+          <div class="shorts">
+            <div class="short left"></div>
+            <div class="short right"></div>
+          </div>
+          
+          <!-- Legs -->
+          <div class="legs">
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+          </div>
+          
+          <!-- Shoes -->
+          <div class="shoes">
+            <div class="shoe left"></div>
+            <div class="shoe right"></div>
+          </div>
         </div>
       </div>
-    </div>
+      
+      <!-- CSS Pixel Art Cat (Orange) -->
+      <div :class="['cat', { 'walking': isMoving }]">
+        <div class="pixel-cat">
+          <div class="cat-ear left"></div>
+          <div class="cat-ear right"></div>
+          <div class="cat-head">
+            <div class="cat-eyes">
+              <span class="cat-eye"></span>
+              <span class="cat-eye"></span>
+            </div>
+            <div class="cat-nose"></div>
+            <div class="cat-whiskers left"></div>
+            <div class="cat-whiskers right"></div>
+          </div>
+          <div class="cat-body"></div>
+          <div class="cat-legs">
+            <div class="cat-leg"></div>
+            <div class="cat-leg"></div>
+            <div class="cat-leg back"></div>
+            <div class="cat-leg back"></div>
+          </div>
+          <div class="cat-tail"></div>
+        </div>
+      </div>
+      
+      <!-- CSS Pixel Art Gray Persian Cat -->
+      <div :class="['persian-cat', { 'walking': isMoving }]">
+        <div class="pixel-persian">
+          <div class="persian-ear left"></div>
+          <div class="persian-ear right"></div>
+          <div class="persian-head">
+            <div class="persian-fluff"></div>
+            <div class="persian-face">
+              <div class="persian-eyes">
+                <span class="persian-eye"></span>
+                <span class="persian-eye"></span>
+              </div>
+              <div class="persian-nose"></div>
+            </div>
+          </div>
+          <div class="persian-body"></div>
+          <div class="persian-legs">
+            <div class="persian-leg"></div>
+            <div class="persian-leg"></div>
+            <div class="persian-leg back"></div>
+            <div class="persian-leg back"></div>
+          </div>
+          <div class="persian-tail"></div>
+        </div>
+      </div>
+    </template>
     
-    <!-- CSS Pixel Art Cat (Orange) -->
-    <div :class="['cat', { 'walking': isMoving }]">
-      <div class="pixel-cat">
-        <div class="cat-ear left"></div>
-        <div class="cat-ear right"></div>
-        <div class="cat-head">
-          <div class="cat-eyes">
-            <span class="cat-eye"></span>
-            <span class="cat-eye"></span>
-          </div>
-          <div class="cat-nose"></div>
-          <div class="cat-whiskers left"></div>
-          <div class="cat-whiskers right"></div>
-        </div>
-        <div class="cat-body"></div>
-        <div class="cat-legs">
-          <div class="cat-leg"></div>
-          <div class="cat-leg"></div>
-          <div class="cat-leg back"></div>
-          <div class="cat-leg back"></div>
-        </div>
-        <div class="cat-tail"></div>
-      </div>
-    </div>
-    
-    <!-- CSS Pixel Art Gray Persian Cat -->
-    <div :class="['persian-cat', { 'walking': isMoving }]">
-      <div class="pixel-persian">
-        <div class="persian-ear left"></div>
-        <div class="persian-ear right"></div>
-        <div class="persian-head">
-          <div class="persian-fluff"></div>
-          <div class="persian-face">
-            <div class="persian-eyes">
-              <span class="persian-eye"></span>
-              <span class="persian-eye"></span>
+    <!-- DRIVING MODE - Show car with passengers -->
+    <template v-else>
+      <div :class="['car', { 'driving': isMoving }]">
+        <div class="pixel-car">
+          <!-- Car Roof (behind windows) -->
+          <div class="car-roof"></div>
+          
+          <!-- Windows with passengers (on top of roof) -->
+          <div class="car-windows">
+            <div class="car-window front">
+              <div class="passenger hero-head"></div>
             </div>
-            <div class="persian-nose"></div>
+            <div class="car-window back">
+              <div class="passenger cat-head-mini orange"></div>
+              <div class="passenger cat-head-mini gray"></div>
+            </div>
           </div>
+          
+          <!-- Car Body -->
+          <div class="car-body">
+            <!-- Hood -->
+            <div class="car-hood"></div>
+            <!-- Trunk -->
+            <div class="car-trunk"></div>
+          </div>
+          
+          <!-- Headlights -->
+          <div class="headlight front"></div>
+          <div class="headlight back"></div>
+          
+          <!-- Wheels -->
+          <div class="wheel front">
+            <div class="wheel-rim"></div>
+          </div>
+          <div class="wheel back">
+            <div class="wheel-rim"></div>
+          </div>
+          
+          <!-- Side Mirror -->
+          <div class="side-mirror"></div>
         </div>
-        <div class="persian-body"></div>
-        <div class="persian-legs">
-          <div class="persian-leg"></div>
-          <div class="persian-leg"></div>
-          <div class="persian-leg back"></div>
-          <div class="persian-leg back"></div>
+        
+        <!-- Dust/smoke effect when driving -->
+        <div v-if="isMoving" class="dust-trail">
+          <span class="dust-puff"></span>
+          <span class="dust-puff delay-1"></span>
+          <span class="dust-puff delay-2"></span>
         </div>
-        <div class="persian-tail"></div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -765,5 +823,294 @@ defineProps({
 
 .persian-cat.walking .pixel-persian {
   animation: catBounce 0.3s ease-in-out infinite;
+}
+
+/* ============ CAR MODE ============ */
+.car {
+  position: relative;
+  filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.4));
+}
+
+.pixel-car {
+  position: relative;
+  transform: scale(1.8);
+  transform-origin: bottom center;
+}
+
+/* Car Body - Sleek Sedan */
+.car-body {
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(180deg, #e53935 0%, #c62828 50%, #b71c1c 100%);
+  border-radius: 8px 15px 5px 5px;
+  position: relative;
+  border: 2px solid #7f1d1d;
+  z-index: 10;
+}
+
+/* Car Roof/Cabin - Behind windows */
+.car-roof {
+  position: absolute;
+  top: -28px;
+  left: 20px;
+  width: 60px;
+  height: 32px;
+  background: linear-gradient(180deg, #e53935 0%, #c62828 100%);
+  border-radius: 15px 15px 0 0;
+  border: 2px solid #7f1d1d;
+  border-bottom: none;
+  z-index: 5;
+}
+
+/* Windows - On top of roof */
+.car-windows {
+  position: absolute;
+  top: -26px;
+  left: 22px;
+  display: flex;
+  gap: 4px;
+  z-index: 15;
+}
+
+.car-window {
+  height: 22px;
+  background: linear-gradient(180deg, #e3f2fd 0%, #90caf9 100%);
+  border-radius: 6px 6px 0 0;
+  border: 2px solid #1976d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 2px 4px;
+}
+
+.car-window.front {
+  width: 24px;
+}
+
+.car-window.back {
+  width: 28px;
+}
+
+/* Passenger heads - Enlarged for visibility */
+.passenger {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.passenger.hero-head {
+  background: #fcd8b5;
+  position: relative;
+}
+
+.passenger.hero-head::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0px;
+  width: 12px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 6px 6px 0 0;
+}
+
+/* Eyes for hero */
+.passenger.hero-head::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  width: 3px;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  box-shadow: 5px 0 0 #1a1a1a;
+}
+
+.passenger.cat-head-mini {
+  width: 10px;
+  height: 10px;
+  position: relative;
+}
+
+.passenger.cat-head-mini.orange {
+  background: linear-gradient(90deg, #fff 50%, #FF8C00 50%);
+}
+
+/* Cat ears */
+.passenger.cat-head-mini.orange::before,
+.passenger.cat-head-mini.gray::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 4px solid #FF8C00;
+}
+
+.passenger.cat-head-mini.gray::before {
+  border-bottom-color: #6b6b6b;
+}
+
+.passenger.cat-head-mini.gray {
+  background: #6b6b6b;
+}
+
+/* Hood */
+.car-hood {
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(180deg, #e53935 0%, #c62828 100%);
+  border-radius: 10px 0 5px 5px;
+  border: 2px solid #7f1d1d;
+  z-index: 9;
+}
+
+/* Trunk */
+.car-trunk {
+  position: absolute;
+  right: -10px;
+  top: 8px;
+  width: 15px;
+  height: 17px;
+  background: linear-gradient(180deg, #c62828 0%, #b71c1c 100%);
+  border-radius: 0 8px 5px 0;
+  border: 2px solid #7f1d1d;
+  border-left: none;
+  z-index: 8;
+}
+
+/* Headlights */
+.headlight {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  z-index: 15;
+}
+
+.headlight.front {
+  left: -18px;
+  top: 18px;
+  background: radial-gradient(circle, #fff9c4 0%, #ffeb3b 100%);
+  box-shadow: 0 0 8px #ffeb3b;
+}
+
+.headlight.back {
+  right: -8px;
+  top: 18px;
+  background: radial-gradient(circle, #ffcdd2 0%, #ef5350 100%);
+  box-shadow: 0 0 5px #ef5350;
+}
+
+/* Wheels */
+.wheel {
+  position: absolute;
+  bottom: -10px;
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #424242 0%, #212121 100%);
+  border-radius: 50%;
+  border: 2px solid #000;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel.front {
+  left: 8px;
+}
+
+.wheel.back {
+  right: 8px;
+}
+
+.wheel-rim {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #bdbdbd 0%, #757575 100%);
+  border-radius: 50%;
+  border: 1px solid #424242;
+}
+
+/* Side Mirror */
+.side-mirror {
+  position: absolute;
+  left: 20px;
+  top: -8px;
+  width: 5px;
+  height: 4px;
+  background: #7f1d1d;
+  border-radius: 2px;
+  z-index: 15;
+}
+
+/* Driving Animation */
+.car.driving {
+  animation: carBounce 0.3s ease-in-out infinite;
+}
+
+.car.driving .wheel {
+  animation: wheelSpin 0.2s linear infinite;
+}
+
+@keyframes carBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Dust Trail */
+.dust-trail {
+  position: absolute;
+  right: -40px;
+  bottom: 0;
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.dust-puff {
+  width: 12px;
+  height: 12px;
+  background: rgba(139, 119, 101, 0.6);
+  border-radius: 50%;
+  animation: dustFade 0.4s ease-out infinite;
+}
+
+.dust-puff.delay-1 {
+  animation-delay: 0.1s;
+  width: 10px;
+  height: 10px;
+}
+
+.dust-puff.delay-2 {
+  animation-delay: 0.2s;
+  width: 8px;
+  height: 8px;
+}
+
+@keyframes dustFade {
+  0% { 
+    opacity: 0.6; 
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateX(20px) translateY(-10px) scale(0.5);
+  }
 }
 </style>

@@ -6,11 +6,12 @@ A retro-style pixel art portfolio website featuring a horizontal scrolling game 
 
 ## 🖥️ Live Demo
 
-[View Portfolio](https://warat-supaporn.vercel.app) *(Update with your deployed URL)*
+[View Portfolio](https://warat-supaporn.vercel.app) _(Update with your deployed URL)_
 
 ## 📸 Preview
 
 The portfolio features:
+
 - 🎮 Side-scrolling game world with multiple themed sections
 - 🏀 Animated pixel art basketball player character with sword
 - 🐱 Two cats: Orange tabby and Gray Persian
@@ -20,28 +21,32 @@ The portfolio features:
 ## 🛠️ Tech Stack
 
 ### Frontend Framework
-| Technology | Version | Description |
-|------------|---------|-------------|
+
+| Technology   | Version | Description                                           |
+| ------------ | ------- | ----------------------------------------------------- |
 | **Vue.js 3** | ^3.5.13 | Progressive JavaScript framework with Composition API |
-| **Vite** | ^7.2.4 | Next-generation frontend build tool |
+| **Vite**     | ^7.2.4  | Next-generation frontend build tool                   |
 
 ### Styling & UI
-| Library | Version | Description |
-|---------|---------|-------------|
-| **NES.css** | ^2.2.1 | Retro 8-bit style CSS framework |
-| **SASS** | ^1.83.0 | CSS preprocessor for advanced styling |
+
+| Library     | Version | Description                           |
+| ----------- | ------- | ------------------------------------- |
+| **NES.css** | ^2.2.1  | Retro 8-bit style CSS framework       |
+| **SASS**    | ^1.83.0 | CSS preprocessor for advanced styling |
 
 ### Animation
-| Library | Version | Description |
-|---------|---------|-------------|
-| **GSAP** | ^3.14.2 | Professional-grade animation library |
-| **ScrollTrigger** | (GSAP plugin) | Scroll-based animations |
+
+| Library           | Version       | Description                          |
+| ----------------- | ------------- | ------------------------------------ |
+| **GSAP**          | ^3.14.2       | Professional-grade animation library |
+| **ScrollTrigger** | (GSAP plugin) | Scroll-based animations              |
 
 ### Development Tools
-| Tool | Purpose |
-|------|---------|
+
+| Tool                   | Purpose                |
+| ---------------------- | ---------------------- |
 | **@vitejs/plugin-vue** | Vue 3 support for Vite |
-| **ESLint** | Code linting |
+| **ESLint**             | Code linting           |
 
 ## 📂 Project Structure
 
@@ -76,7 +81,7 @@ my-pixel-portfolio/
   - 🌳 About Me (Forest theme)
   - 🏜️ Tech Stack (Desert theme)
   - 🏔️ Experience (Cave theme)
-  - 💎 Projects Loot (Dungeon theme)
+  - 💎 Projects (Dungeon theme)
   - 👋 Contact (Night theme)
 - **📱 Fully Responsive** - Works on desktop, tablet, and mobile
 - **✨ Smooth Animations** - GSAP-powered scroll animations
@@ -84,7 +89,8 @@ my-pixel-portfolio/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -124,7 +130,9 @@ The entire development process utilized natural language prompts to iteratively 
 ## 📝 Customization
 
 ### Update Your Information
+
 Edit `src/data/portfolio.js` to update:
+
 - Personal details
 - Experience/work history
 - Projects
@@ -132,7 +140,9 @@ Edit `src/data/portfolio.js` to update:
 - Contact information
 
 ### Change Character Appearance
+
 Modify `src/components/PlayerCharacter.vue` to customize:
+
 - Character colors (jersey, hair, etc.)
 - Cat colors
 - Animation styles
@@ -144,6 +154,7 @@ MIT License - feel free to use this as a template for your own portfolio!
 ## 👤 Author
 
 **Warat Supaporn (Sanooker)**
+
 - GitHub: [@sanookdev](https://github.com/sanookdev)
 - LinkedIn: [Warat Supaporn](https://www.linkedin.com/in/warat-supaporn-622b101b0/)
 

@@ -16,6 +16,7 @@ const container = ref(null);
 const isMoving = ref(false);
 const currentLevel = ref(0);
 const facingRight = ref(false);
+const isFlying = ref(false); // Airplane mode toggle
 let scrollTimeout = null;
 let lastScrollY = 0;
 
@@ -416,7 +417,7 @@ onMounted(() => {
       <!-- LEVEL 7: CONTACT -->
       <section class="level level-contact">
         <ParallaxBackground theme="night" />
-        <FloatingElements type="hearts" :count="8" />
+        <FloatingElements type="wing" :count="8" />
         
         <div class="content-layer">
           <div class="final-castle">
@@ -450,8 +451,18 @@ onMounted(() => {
     </div>
 
     <div class="player-fixed">
-      <PlayerCharacter :isMoving="isMoving" :facingRight="facingRight" />
+      <PlayerCharacter :isMoving="isMoving" :facingRight="facingRight" :isFlying="isFlying" />
     </div>
+    
+    <!-- Car Toggle Button -->
+    <button 
+      class="airplane-toggle" 
+      :class="{ 'active': isFlying }"
+      @click="isFlying = !isFlying"
+      title="Toggle Car Mode"
+    >
+      🚗
+    </button>
     
     <!-- Progress indicator -->
     <div class="progress-indicator">
@@ -1422,6 +1433,55 @@ onMounted(() => {
 @media (min-width: 481px) {
   .mobile-controls {
     display: none;
+  }
+}
+
+/* Airplane Toggle Button */
+.airplane-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border: 4px solid #fff;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 2000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.airplane-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.airplane-toggle.active {
+  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5); }
+  50% { box-shadow: 0 4px 30px rgba(255, 107, 107, 0.8); }
+}
+
+@media (max-width: 480px) {
+  .airplane-toggle {
+    bottom: 180px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
   }
 }
 </style>

@@ -30,7 +30,8 @@ const getEmoji = (type) => {
     keyboard: '⌨️',
     codetag:'</>',
     PHP:'🐘',
-    atom:'⚛️'
+    atom:'⚛️',
+    wing:'✨'
 };
   return emojiMap[type] || '⭐';
 };
