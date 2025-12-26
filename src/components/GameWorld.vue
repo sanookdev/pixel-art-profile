@@ -40,7 +40,12 @@ const lifestyleImages = [
   '089b429e-817e-4431-8c4c-79be59fe71af.jpeg',
   '82b0106e-7111-44cb-bf74-718c076aace6.jpeg',
   'a2a36df6-238c-435a-aa26-5d92d553f8cc.jpeg',
-  'cbb5f179-e2d1-4a17-811d-44a39adwqe846001.jpeg'
+  'cbb5f179-e2d1-4a17-811d-44a39adwqe846001.jpeg',
+  '1.jpeg',
+  '2.jpeg',
+  '3.jpeg',
+  '4.jpeg',
+  '5.jpeg'
 ];
 
 // Cat gallery images
@@ -62,7 +67,8 @@ const relationImages = [
   '9ab55c73-ccc5-4a86-91fd-83598f9f998d.jpeg',
   '9f877ff8-b5e7-4f86-bda4-f77b560e6664.jpeg',
   'd1d0315b-bfaa-45e3-aaf4-2885634c3ce8.jpeg',
-  'fd4808bd-a178-4593-9c4e-dfcd191d18c2.jpeg'
+  'fd4808bd-a178-4593-9c4e-dfcd191d18c2.jpeg',
+  '1.jpeg'
 ];
 
 const handleScroll = () => {

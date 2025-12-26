@@ -121,49 +121,78 @@ defineProps({
       </div>
     </template>
     
-    <!-- DRIVING MODE - Show car with passengers -->
+    <!-- DRIVING MODE - Luxury Gray Sedan -->
     <template v-else>
       <div :class="['car', { 'driving': isMoving }]">
         <div class="pixel-car">
-          <!-- Car Roof (behind windows) -->
+          <!-- Car Roof/Cabin -->
           <div class="car-roof"></div>
           
-          <!-- Windows with passengers (on top of roof) -->
-          <div class="car-windows">
-            <div class="car-window front">
-              <div class="passenger hero-head"></div>
+          <!-- Large Windows with detailed passengers -->
+          <div class="car-cabin">
+            <!-- Front Window (Driver) -->
+            <div class="car-window driver-window">
+              <div class="driver-seat">
+                <!-- Human Head -->
+                <div class="driver-head">
+                  <div class="driver-hair"></div>
+                  <div class="driver-face">
+                    <div class="driver-eyes"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="car-window back">
-              <div class="passenger cat-head-mini orange"></div>
-              <div class="passenger cat-head-mini gray"></div>
+            
+            <!-- Back Window (Cats) -->
+            <div class="car-window passenger-window">
+              <div class="back-seats">
+                <!-- Orange Cat Head -->
+                <div class="cat-passenger orange">
+                  <div class="cat-ear-left"></div>
+                  <div class="cat-ear-right"></div>
+                  <div class="cat-face"></div>
+                </div>
+                <!-- Gray Cat Head -->
+                <div class="cat-passenger gray">
+                  <div class="cat-ear-left"></div>
+                  <div class="cat-ear-right"></div>
+                  <div class="cat-face"></div>
+                </div>
+              </div>
             </div>
           </div>
           
           <!-- Car Body -->
           <div class="car-body">
-            <!-- Hood -->
             <div class="car-hood"></div>
-            <!-- Trunk -->
             <div class="car-trunk"></div>
+            <div class="door-line"></div>
           </div>
           
           <!-- Headlights -->
           <div class="headlight front"></div>
           <div class="headlight back"></div>
           
-          <!-- Wheels -->
+          <!-- Premium Wheels -->
           <div class="wheel front">
-            <div class="wheel-rim"></div>
+            <div class="wheel-rim">
+              <div class="rim-spoke"></div>
+            </div>
           </div>
           <div class="wheel back">
-            <div class="wheel-rim"></div>
+            <div class="wheel-rim">
+              <div class="rim-spoke"></div>
+            </div>
           </div>
           
           <!-- Side Mirror -->
           <div class="side-mirror"></div>
+          
+          <!-- Door Handle -->
+          <div class="door-handle"></div>
         </div>
         
-        <!-- Dust/smoke effect when driving -->
+        <!-- Dust effect when driving -->
         <div v-if="isMoving" class="dust-trail">
           <span class="dust-puff"></span>
           <span class="dust-puff delay-1"></span>
@@ -825,102 +854,112 @@ defineProps({
   animation: catBounce 0.3s ease-in-out infinite;
 }
 
-/* ============ CAR MODE ============ */
+/* ============ LUXURY GRAY SEDAN ============ */
 .car {
   position: relative;
-  filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.4));
+  filter: drop-shadow(4px 6px 10px rgba(0,0,0,0.5));
 }
 
 .pixel-car {
   position: relative;
-  transform: scale(1.8);
+  transform: scale(2);
   transform-origin: bottom center;
 }
 
-/* Car Body - Sleek Sedan */
+/* Car Body - Luxury Gray */
 .car-body {
-  width: 100px;
-  height: 30px;
-  background: linear-gradient(180deg, #e53935 0%, #c62828 50%, #b71c1c 100%);
-  border-radius: 8px 15px 5px 5px;
+  width: 110px;
+  height: 28px;
+  background: linear-gradient(180deg, #9e9e9e 0%, #757575 40%, #616161 100%);
+  border-radius: 5px 12px 4px 4px;
   position: relative;
-  border: 2px solid #7f1d1d;
+  border: 2px solid #424242;
   z-index: 10;
 }
 
-/* Car Roof/Cabin - Behind windows */
+/* Car Roof - Gray */
 .car-roof {
   position: absolute;
-  top: -28px;
-  left: 20px;
-  width: 60px;
-  height: 32px;
-  background: linear-gradient(180deg, #e53935 0%, #c62828 100%);
+  top: -32px;
+  left: 18px;
+  width: 75px;
+  height: 35px;
+  background: linear-gradient(180deg, #9e9e9e 0%, #757575 100%);
   border-radius: 15px 15px 0 0;
-  border: 2px solid #7f1d1d;
+  border: 2px solid #424242;
   border-bottom: none;
   z-index: 5;
 }
 
-/* Windows - On top of roof */
-.car-windows {
+/* Cabin - Window Container */
+.car-cabin {
   position: absolute;
-  top: -26px;
-  left: 22px;
+  top: -30px;
+  left: 20px;
   display: flex;
-  gap: 4px;
-  z-index: 15;
-}
-
-.car-window {
-  height: 22px;
-  background: linear-gradient(180deg, #e3f2fd 0%, #90caf9 100%);
-  border-radius: 6px 6px 0 0;
-  border: 2px solid #1976d2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 3px;
-  padding: 2px 4px;
+  z-index: 20;
 }
 
-.car-window.front {
-  width: 24px;
+/* Windows */
+.car-window {
+  height: 28px;
+  background: linear-gradient(180deg, #e1f5fe 0%, #81d4fa 50%, #4fc3f7 100%);
+  border-radius: 8px 8px 0 0;
+  border: 2px solid #0288d1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2px;
+  overflow: visible;
 }
 
-.car-window.back {
-  width: 28px;
+.driver-window {
+  width: 30px;
 }
 
-/* Passenger heads - Enlarged for visibility */
-.passenger {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.2);
+.passenger-window {
+  width: 38px;
 }
 
-.passenger.hero-head {
-  background: #fcd8b5;
+/* Driver Seat */
+.driver-seat {
+  display: flex;
+  justify-content: center;
+}
+
+/* Driver Head */
+.driver-head {
   position: relative;
+  width: 16px;
+  height: 16px;
 }
 
-.passenger.hero-head::before {
-  content: '';
+.driver-hair {
   position: absolute;
-  top: -3px;
-  left: 0px;
-  width: 12px;
-  height: 6px;
+  top: 0;
+  left: 1px;
+  width: 14px;
+  height: 8px;
   background: #1a1a1a;
-  border-radius: 6px 6px 0 0;
+  border-radius: 7px 7px 0 0;
+  z-index: 2;
 }
 
-/* Eyes for hero */
-.passenger.hero-head::after {
-  content: '';
+.driver-face {
   position: absolute;
-  top: 4px;
+  top: 5px;
+  left: 2px;
+  width: 12px;
+  height: 11px;
+  background: #fcd8b5;
+  border-radius: 3px 3px 6px 6px;
+  z-index: 1;
+}
+
+.driver-eyes {
+  position: absolute;
+  top: 3px;
   left: 2px;
   width: 3px;
   height: 2px;
@@ -929,98 +968,155 @@ defineProps({
   box-shadow: 5px 0 0 #1a1a1a;
 }
 
-.passenger.cat-head-mini {
-  width: 10px;
-  height: 10px;
-  position: relative;
+/* Back Seats - Cats */
+.back-seats {
+  display: flex;
+  gap: 4px;
+  padding: 0 2px;
 }
 
-.passenger.cat-head-mini.orange {
+/* Cat Passengers */
+.cat-passenger {
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+
+.cat-passenger .cat-face {
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.cat-passenger.orange .cat-face {
   background: linear-gradient(90deg, #fff 50%, #FF8C00 50%);
 }
 
-/* Cat ears */
-.passenger.cat-head-mini.orange::before,
-.passenger.cat-head-mini.gray::before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 3px solid transparent;
-  border-right: 3px solid transparent;
-  border-bottom: 4px solid #FF8C00;
-}
-
-.passenger.cat-head-mini.gray::before {
-  border-bottom-color: #6b6b6b;
-}
-
-.passenger.cat-head-mini.gray {
+.cat-passenger.gray .cat-face {
   background: #6b6b6b;
 }
 
-/* Hood */
+/* Cat Ears */
+.cat-passenger .cat-ear-left,
+.cat-passenger .cat-ear-right {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  z-index: 2;
+}
+
+.cat-passenger .cat-ear-left {
+  left: 0;
+}
+
+.cat-passenger .cat-ear-right {
+  right: 0;
+}
+
+.cat-passenger.orange .cat-ear-left,
+.cat-passenger.orange .cat-ear-right {
+  border-bottom: 6px solid #FF8C00;
+}
+
+.cat-passenger.gray .cat-ear-left,
+.cat-passenger.gray .cat-ear-right {
+  border-bottom: 6px solid #6b6b6b;
+}
+
+/* Car Hood */
 .car-hood {
   position: absolute;
-  left: -15px;
-  top: 5px;
-  width: 20px;
+  left: -18px;
+  top: 4px;
+  width: 24px;
   height: 20px;
-  background: linear-gradient(180deg, #e53935 0%, #c62828 100%);
-  border-radius: 10px 0 5px 5px;
-  border: 2px solid #7f1d1d;
+  background: linear-gradient(180deg, #9e9e9e 0%, #757575 100%);
+  border-radius: 12px 0 5px 5px;
+  border: 2px solid #424242;
   z-index: 9;
 }
 
-/* Trunk */
+/* Car Trunk */
 .car-trunk {
   position: absolute;
-  right: -10px;
-  top: 8px;
-  width: 15px;
-  height: 17px;
-  background: linear-gradient(180deg, #c62828 0%, #b71c1c 100%);
-  border-radius: 0 8px 5px 0;
-  border: 2px solid #7f1d1d;
+  right: -12px;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(180deg, #757575 0%, #616161 100%);
+  border-radius: 0 10px 5px 0;
+  border: 2px solid #424242;
   border-left: none;
   z-index: 8;
+}
+
+/* Door Line */
+.door-line {
+  position: absolute;
+  left: 45px;
+  top: 2px;
+  width: 2px;
+  height: 22px;
+  background: #424242;
+  z-index: 11;
+}
+
+/* Door Handle */
+.door-handle {
+  position: absolute;
+  left: 50px;
+  top: 10px;
+  width: 8px;
+  height: 3px;
+  background: #bdbdbd;
+  border-radius: 2px;
+  border: 1px solid #424242;
+  z-index: 12;
 }
 
 /* Headlights */
 .headlight {
   position: absolute;
-  width: 6px;
-  height: 6px;
   border-radius: 50%;
   z-index: 15;
 }
 
 .headlight.front {
-  left: -18px;
-  top: 18px;
-  background: radial-gradient(circle, #fff9c4 0%, #ffeb3b 100%);
-  box-shadow: 0 0 8px #ffeb3b;
+  left: -22px;
+  top: 16px;
+  width: 8px;
+  height: 6px;
+  background: radial-gradient(ellipse, #fffde7 0%, #ffeb3b 100%);
+  box-shadow: 0 0 10px #ffeb3b, 0 0 20px rgba(255,235,59,0.5);
+  border-radius: 3px;
 }
 
 .headlight.back {
-  right: -8px;
-  top: 18px;
-  background: radial-gradient(circle, #ffcdd2 0%, #ef5350 100%);
-  box-shadow: 0 0 5px #ef5350;
+  right: -10px;
+  top: 16px;
+  width: 6px;
+  height: 5px;
+  background: radial-gradient(circle, #ffcdd2 0%, #e53935 100%);
+  box-shadow: 0 0 6px #e53935;
 }
 
-/* Wheels */
+/* Premium Wheels */
 .wheel {
   position: absolute;
   bottom: -10px;
-  width: 18px;
-  height: 18px;
-  background: radial-gradient(circle, #424242 0%, #212121 100%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #424242 0%, #1a1a1a 100%);
   border-radius: 50%;
   border: 2px solid #000;
-  z-index: 20;
+  z-index: 25;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1035,32 +1131,47 @@ defineProps({
 }
 
 .wheel-rim {
-  width: 8px;
-  height: 8px;
-  background: radial-gradient(circle, #bdbdbd 0%, #757575 100%);
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #e0e0e0 0%, #9e9e9e 100%);
   border-radius: 50%;
-  border: 1px solid #424242;
+  border: 1px solid #616161;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rim-spoke {
+  width: 6px;
+  height: 6px;
+  background: #424242;
+  border-radius: 50%;
 }
 
 /* Side Mirror */
 .side-mirror {
   position: absolute;
-  left: 20px;
-  top: -8px;
-  width: 5px;
-  height: 4px;
-  background: #7f1d1d;
+  left: 15px;
+  top: -12px;
+  width: 6px;
+  height: 5px;
+  background: linear-gradient(180deg, #616161 0%, #424242 100%);
   border-radius: 2px;
-  z-index: 15;
+  border: 1px solid #212121;
+  z-index: 25;
 }
 
 /* Driving Animation */
 .car.driving {
-  animation: carBounce 0.3s ease-in-out infinite;
+  animation: carBounce 0.25s ease-in-out infinite;
 }
 
 .car.driving .wheel {
-  animation: wheelSpin 0.2s linear infinite;
+  animation: wheelSpin 0.15s linear infinite;
+}
+
+.car.driving .wheel-rim {
+  animation: wheelSpin 0.15s linear infinite reverse;
 }
 
 @keyframes carBounce {
@@ -1076,41 +1187,41 @@ defineProps({
 /* Dust Trail */
 .dust-trail {
   position: absolute;
-  right: -40px;
-  bottom: 0;
+  right: -50px;
+  bottom: 5px;
   display: flex;
-  gap: 5px;
+  gap: 6px;
   align-items: flex-end;
 }
 
 .dust-puff {
-  width: 12px;
-  height: 12px;
-  background: rgba(139, 119, 101, 0.6);
+  width: 14px;
+  height: 14px;
+  background: rgba(158, 158, 158, 0.5);
   border-radius: 50%;
-  animation: dustFade 0.4s ease-out infinite;
+  animation: dustFade 0.5s ease-out infinite;
 }
 
 .dust-puff.delay-1 {
-  animation-delay: 0.1s;
-  width: 10px;
-  height: 10px;
+  animation-delay: 0.15s;
+  width: 11px;
+  height: 11px;
 }
 
 .dust-puff.delay-2 {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
   width: 8px;
   height: 8px;
 }
 
 @keyframes dustFade {
   0% { 
-    opacity: 0.6; 
+    opacity: 0.5; 
     transform: translateX(0) translateY(0) scale(1);
   }
   100% { 
     opacity: 0; 
-    transform: translateX(20px) translateY(-10px) scale(0.5);
+    transform: translateX(25px) translateY(-8px) scale(0.4);
   }
 }
 </style>
