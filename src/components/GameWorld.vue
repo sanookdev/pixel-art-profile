@@ -208,13 +208,13 @@ onMounted(() => {
         <FloatingElements type="atom" :count="6" />
         
         <div class="content-layer">
-          <div class="profile-logo">
+          <div class="profile-logo" style="margin-bottom: 1px">
             <img src="/profile.png" alt="Profile" class="pixel-avatar" />
           </div>
-          <DialogueBox title="🎮 Welcome!" type="is-dark">
+          <DialogueBox title="Welcome!" type="is-dark">
             <p>Hi! I'm <span class="nes-text is-success glow-text">{{ portfolioData.personal.name }}</span></p>
             <p><i class="nes-icon coin is-small"></i> {{ portfolioData.personal.role }}</p>
-            <p class="helper-text blink">> Scroll to Start Adventure</p>
+            <p class="helper-text blink">> Scroll down to Start Adventure</p>
           </DialogueBox>
         </div>
         
@@ -729,7 +729,7 @@ onMounted(() => {
   color: #ff69b4;
 }
 
-/* === PROFILE LOGO === */
+/* === PROFILE LOGO - 8-BIT PIXEL FRAME === */
 .profile-logo {
   margin-bottom: -10px;
   display: flex;
@@ -739,34 +739,58 @@ onMounted(() => {
 }
 
 .pixel-avatar {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  border-radius: 0;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  border: 4px solid #fff;
-  box-shadow: 
-    0 0 0 3px #333,
-    0 0 15px rgba(0, 200, 255, 0.6),
-    0 0 30px rgba(0, 200, 255, 0.4);
-  filter: contrast(1.1) saturate(0.8);
   object-fit: cover;
-  animation: avatarGlow 2s ease-in-out infinite alternate;
+  /* 8-bit pixel border effect */
+  border: 6px solid #fff;
+  outline: 6px solid #333;
+  box-shadow: 
+    /* Outer pixel corners */
+    12px 0 0 0 #333,
+    -12px 0 0 0 #333,
+    0 12px 0 0 #333,
+    0 -12px 0 0 #333,
+    /* Glow effect */
+    0 0 20px rgba(0, 200, 255, 0.6),
+    0 0 40px rgba(0, 200, 255, 0.3),
+    /* Inner shadow for depth */
+    inset 0 0 10px rgba(0, 0, 0, 0.3);
+  filter: contrast(1.1) saturate(0.9);
+  animation: pixelGlow 2s ease-in-out infinite alternate;
+  /* Pixelated corners effect */
+  clip-path: polygon(
+    0 8px, 8px 8px, 8px 0,
+    calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
+    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+  );
 }
 
-@keyframes avatarGlow {
+@keyframes pixelGlow {
   0% {
     box-shadow: 
-      0 0 0 3px #333,
-      0 0 15px rgba(0, 200, 255, 0.6),
-      0 0 30px rgba(0, 200, 255, 0.4);
+      12px 0 0 0 #333,
+      -12px 0 0 0 #333,
+      0 12px 0 0 #333,
+      0 -12px 0 0 #333,
+      0 0 15px rgba(0, 200, 255, 0.5),
+      0 0 30px rgba(0, 200, 255, 0.2),
+      inset 0 0 10px rgba(0, 0, 0, 0.3);
   }
   100% {
     box-shadow: 
-      0 0 0 3px #333,
-      0 0 20px rgba(0, 200, 255, 0.8),
-      0 0 40px rgba(0, 200, 255, 0.6);
+      12px 0 0 0 #333,
+      -12px 0 0 0 #333,
+      0 12px 0 0 #333,
+      0 -12px 0 0 #333,
+      0 0 25px rgba(0, 200, 255, 0.8),
+      0 0 50px rgba(0, 200, 255, 0.4),
+      inset 0 0 10px rgba(0, 0, 0, 0.3);
   }
 }
 
