@@ -91,7 +91,7 @@ export const portfolioData = {
     tools: ["Jenkins (Auto Deploy)", "PM2", "GitHub", "Git"],
     skills: {
         languages: ["HTML5", "CSS3", "JavaScript", "PHP", "C++", "SQL"],
-        frameworks: ["Vue.js", "React", "Laravel", "Codeigniter 3", "Node.js"],
+        frameworks: ["Vue.js", "Codeigniter 3", "Node.js"],
         database: ["MySQL", "PostgreSQL", "Firebase Realtime Database", "Firebase Firestore"],
         tools: ["Git", "Jenkins", "Vercel", "Firebase", "PM2"],
         OS: ["Linux", "Windows"],

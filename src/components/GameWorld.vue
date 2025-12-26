@@ -248,10 +248,10 @@ onMounted(() => {
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
-            <i class="nes-icon trophy is-small"></i> Tech Stack
+            <i class="nes-icon trophy is-small"></i> My Skills
           </h2>
           <div class="skills-block nes-container is-dark with-title glow-box">
-             <p class="title">⚔️ My Skills</p>
+             <p class="title">⚔️ Tech Stack</p>
              
              <!-- Languages -->
              <div class="skill-category">
@@ -313,7 +313,7 @@ onMounted(() => {
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
-            <i class="nes-icon trophy is-small"></i> Experience
+            <i class="nes-icon trophy is-small"></i> Work History
           </h2>
           <div class="timeline">
               <div v-for="(job, index) in portfolioData.experience" :key="job.id" class="exp-item" :style="{ animationDelay: index * 0.2 + 's' }">
@@ -437,7 +437,7 @@ onMounted(() => {
             </div>
           </div>
           
-          <DialogueBox title="🏆 The End!" type="is-dark">
+          <DialogueBox title="The End!" type="is-dark">
               <p class="nes-text is-success" style = "text-align: center;">Know me more</p>
               <div class="social-links">
                   <a :href="portfolioData.contact.github" target="_blank" class="nes-icon github is-medium social-icon"></a>
@@ -445,7 +445,7 @@ onMounted(() => {
                   <a :href="'mailto:' + portfolioData.contact.email" target="_blank" class="nes-icon gmail is-medium social-icon"></a>
               </div>
               <p class="email-text">
-                <i class="nes-icon is-small heart"></i> Mr.{{ portfolioData.personal.name }} ({{ portfolioData.personal.nickname }})
+                LineID: streetnuk
               </p>
           </DialogueBox>
         </div>
