@@ -371,11 +371,11 @@ defineProps({
 
 /* Walking Animation */
 .hero.walking .arm.left {
-  animation: dribbleArm 0.6s ease-in-out infinite;
+  animation: dribbleArm 1.2s ease-in-out infinite;
 }
 
 .hero.walking .basketball {
-  animation: dribbleBall 0.6s ease-in-out infinite;
+  animation: dribbleBall 1.2s ease-in-out infinite;
 }
 
 @keyframes dribbleArm {
@@ -392,19 +392,19 @@ defineProps({
 }
 
 .hero.walking .arm.right {
-  animation: swingArm 0.4s ease-in-out infinite alternate-reverse;
+  animation: swingArm 1.0s ease-in-out infinite alternate-reverse;
 }
 
 .hero.walking .leg.left {
-  animation: walkLeg 0.4s ease-in-out infinite alternate;
+  animation: walkLeg 1.0s ease-in-out infinite alternate;
 }
 
 .hero.walking .leg.right {
-  animation: walkLeg 0.4s ease-in-out infinite alternate-reverse;
+  animation: walkLeg 1.0s ease-in-out infinite alternate-reverse;
 }
 
 .hero.walking .pixel-character {
-  animation: bounce 0.2s ease-in-out infinite;
+  animation: bounce 0.5s ease-in-out infinite;
 }
 
 @keyframes swingArm {
@@ -577,27 +577,27 @@ defineProps({
 
 /* Cat Walking Animation */
 .cat.walking .cat-leg:nth-child(1) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate;
+  animation: walkLeg 0.6s ease-in-out infinite alternate;
 }
 
 .cat.walking .cat-leg:nth-child(2) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate-reverse;
+  animation: walkLeg 0.6s ease-in-out infinite alternate-reverse;
 }
 
 .cat.walking .cat-leg:nth-child(3) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate-reverse;
+  animation: walkLeg 0.6s ease-in-out infinite alternate-reverse;
 }
 
 .cat.walking .cat-leg:nth-child(4) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate;
+  animation: walkLeg 0.6s ease-in-out infinite alternate;
 }
 
 .cat.walking .cat-tail {
-  animation: wagTail 0.4s ease-in-out infinite alternate;
+  animation: wagTail 0.8s ease-in-out infinite alternate;
 }
 
 .cat.walking .pixel-cat {
-  animation: catBounce 0.15s ease-in-out infinite;
+  animation: catBounce 0.3s ease-in-out infinite;
 }
 
 @keyframes wagTail {
@@ -744,26 +744,26 @@ defineProps({
 
 /* Persian Cat Walking Animation */
 .persian-cat.walking .persian-leg:nth-child(1) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate;
+  animation: walkLeg 0.6s ease-in-out infinite alternate;
 }
 
 .persian-cat.walking .persian-leg:nth-child(2) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate-reverse;
+  animation: walkLeg 0.6s ease-in-out infinite alternate-reverse;
 }
 
 .persian-cat.walking .persian-leg:nth-child(3) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate-reverse;
+  animation: walkLeg 0.6s ease-in-out infinite alternate-reverse;
 }
 
 .persian-cat.walking .persian-leg:nth-child(4) {
-  animation: walkLeg 0.3s ease-in-out infinite alternate;
+  animation: walkLeg 0.6s ease-in-out infinite alternate;
 }
 
 .persian-cat.walking .persian-tail {
-  animation: wagTail 0.4s ease-in-out infinite alternate;
+  animation: wagTail 0.8s ease-in-out infinite alternate;
 }
 
 .persian-cat.walking .pixel-persian {
-  animation: catBounce 0.15s ease-in-out infinite;
+  animation: catBounce 0.3s ease-in-out infinite;
 }
 </style>

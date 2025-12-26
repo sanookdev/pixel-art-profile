@@ -6,7 +6,7 @@ A retro-style pixel art portfolio website featuring a horizontal scrolling game 
 
 ## 🖥️ Live Demo
 
-[View Portfolio](https://sanookdev.github.io/pixel-art-profile/) *(Update with your deployed URL)*
+[View Portfolio](https://warat-supaporn.vercel.app) *(Update with your deployed URL)*
 
 ## 📸 Preview
 
@@ -75,7 +75,7 @@ my-pixel-portfolio/
   - 🏠 Welcome Level
   - 🌳 About Me (Forest theme)
   - 🏜️ Tech Stack (Desert theme)
-  - 🏔️ Experience Quest (Cave theme)
+  - 🏔️ Experience (Cave theme)
   - 💎 Projects Loot (Dungeon theme)
   - 👋 Contact (Night theme)
 - **📱 Fully Responsive** - Works on desktop, tablet, and mobile

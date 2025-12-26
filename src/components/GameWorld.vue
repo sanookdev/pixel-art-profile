@@ -121,9 +121,13 @@ const updateProgress = (progress) => {
 };
 
 // Mobile navigation
+// Factor to slow down the scroll/movement speed (Higher = Slower)
+const SCROLL_SPEED_FACTOR = 1.5;
+
 const moveLevel = (direction) => {
   const targetLevel = Math.max(0, Math.min(6, currentLevel.value + direction));
-  const targetY = targetLevel * window.innerWidth;
+  // Adjust targetY based on the speed factor
+  const targetY = targetLevel * window.innerWidth * SCROLL_SPEED_FACTOR;
   
   window.scrollTo({
     top: targetY,
@@ -169,7 +173,8 @@ onMounted(() => {
       scrollTrigger: {
         trigger: container.value,
         start: "top top",
-        end: () => `+=${getScrollDistance()}`,
+        // Increase the scroll distance required to complete the movement
+        end: () => `+=${getScrollDistance() * SCROLL_SPEED_FACTOR}`,
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
@@ -193,7 +198,7 @@ onMounted(() => {
       <!-- LEVEL 1: START -->
       <section class="level level-start">
         <ParallaxBackground theme="meadow" />
-        <FloatingElements type="butterflies" :count="6" />
+        <FloatingElements type="atom" :count="6" />
         
         <div class="content-layer">
           <div class="profile-logo">
@@ -216,7 +221,7 @@ onMounted(() => {
       <!-- LEVEL 2: BIO -->
       <section class="level level-bio">
         <ParallaxBackground theme="forest" />
-        <FloatingElements type="flowers" :count="8" />
+        <FloatingElements type="PHP" :count="8" />
         
         <div class="content-layer content-wrapper">
           <h2 class="section-title nes-text is-success glow-title">
@@ -232,7 +237,7 @@ onMounted(() => {
       <!-- LEVEL 3: TECH STACK -->
       <section class="level level-skills">
         <ParallaxBackground theme="beach" />
-        <FloatingElements type="stars" :count="8" />
+        <FloatingElements type="codetag" :count="8" />
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
@@ -297,11 +302,11 @@ onMounted(() => {
       <!-- LEVEL 3: EXPERIENCE -->
       <section class="level level-exp">
         <ParallaxBackground theme="mountain" />
-        <FloatingElements type="gems" :count="10" />
+        <FloatingElements type="laptop" :count="10" />
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
-            <i class="nes-icon trophy is-small"></i> Experience Quest
+            <i class="nes-icon trophy is-small"></i> Experience
           </h2>
           <div class="timeline">
               <div v-for="(job, index) in portfolioData.experience" :key="job.id" class="exp-item" :style="{ animationDelay: index * 0.2 + 's' }">
@@ -322,14 +327,14 @@ onMounted(() => {
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-primary glow-title">
-            <i class="nes-icon star is-small"></i> Projects Loot
+            <i class="nes-icon star is-small"></i> Projects
           </h2>
           <div class="projects-grid">
              <div v-for="(proj, index) in portfolioData.projects" :key="proj.id" class="project-card" :style="{ animationDelay: index * 0.15 + 's' }">
                  <div class="nes-container is-rounded with-title is-centered project-container">
                      <p class="title">{{ proj.title }}</p>
                      <div class="tech-stack">
-                       <div class="tech-badge frontend">
+                       <div class="tech-badge frontend" v-if="proj.tech">
                          <span class="tech-label">🖥️ FE:</span>
                          <span class="nes-text is-primary">{{ proj.tech }}</span>
                        </div>
@@ -348,7 +353,7 @@ onMounted(() => {
       <!-- LEVEL 6: LIFESTYLE -->
       <section class="level level-lifestyle">
         <ParallaxBackground theme="desert" />
-        <FloatingElements type="stars" :count="6" />
+        <FloatingElements type="hearts" :count="6" />
         
         <div class="content-layer">
           <h2 class="section-title nes-text is-warning glow-title">
@@ -356,7 +361,39 @@ onMounted(() => {
           </h2>
           
           <div class="gallery-container">
-             <!-- Relationships Section -->
+             
+            <!-- My Lifestyle Section -->
+            <div class="gallery-section">
+              <h3 class="gallery-subtitle nes-text is-primary">My Lifestyle 🏀</h3>
+              <div class="lifestyle-gallery">
+                <div class="gallery-item" v-for="(img, index) in lifestyleImages" :key="`life-${index}`">
+                  <img 
+                    :src="`/lifestyle/${img}`" 
+                    :alt="`Lifestyle ${index + 1}`"
+                    class="gallery-img"
+                    loading="lazy"
+                    @click="openImage(`/lifestyle/${img}`)"
+                  />
+                </div>
+              </div>
+            </div>
+
+          <!-- My Cats Section -->
+          <div class="gallery-section">
+            <h3 class="gallery-subtitle nes-text is-warning" style="margin-top: 20px;">My Cats 🐱</h3>
+            <div class="lifestyle-gallery">
+              <div class="gallery-item" v-for="(img, index) in catImages" :key="`cat-${index}`">
+                <img 
+                  :src="`/lifestyle/cats/${img}`" 
+                  :alt="`Cat ${index + 1}`"
+                  class="gallery-img"
+                  loading="lazy"
+                  @click="openImage(`/lifestyle/cats/${img}`)"
+                />
+              </div>
+            </div>
+          </div>
+            <!-- Relationships Section -->
             <div class="gallery-section">
               <h3 class="gallery-subtitle nes-text is-error" style="margin-top: 20px;">Relationships ❤️</h3>
               <div class="lifestyle-gallery">
@@ -371,38 +408,6 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-            <!-- My Lifestyle Section -->
-            <div class="gallery-section">
-              <h3 class="gallery-subtitle nes-text is-primary">My Lifestyle</h3>
-              <div class="lifestyle-gallery">
-                <div class="gallery-item" v-for="(img, index) in lifestyleImages" :key="`life-${index}`">
-                  <img 
-                    :src="`/lifestyle/${img}`" 
-                    :alt="`Lifestyle ${index + 1}`"
-                    class="gallery-img"
-                    loading="lazy"
-                    @click="openImage(`/lifestyle/${img}`)"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- My Cats Section -->
-            <div class="gallery-section">
-              <h3 class="gallery-subtitle nes-text is-warning" style="margin-top: 20px;">My Cats 🐱</h3>
-              <div class="lifestyle-gallery">
-                <div class="gallery-item" v-for="(img, index) in catImages" :key="`cat-${index}`">
-                  <img 
-                    :src="`/lifestyle/cats/${img}`" 
-                    :alt="`Cat ${index + 1}`"
-                    class="gallery-img"
-                    loading="lazy"
-                    @click="openImage(`/lifestyle/cats/${img}`)"
-                  />
-                </div>
-              </div>
-            </div>
-
            
           </div>
         </div>
@@ -508,7 +513,7 @@ onMounted(() => {
 
 .player-fixed {
   position: absolute;
-  bottom: 120px;
+  bottom: 30px;
   left: 15%;
   z-index: 1000;
   pointer-events: none;
@@ -1327,8 +1332,8 @@ onMounted(() => {
   }
   
   .player-fixed {
-    bottom: 60px;
-    left: 5%;
+    bottom: 30px;
+    left: 15%;
     transform: scale(0.6);
   }
   

@@ -26,7 +26,6 @@ const getEmoji = (type) => {
     coffee: '☕',
     phone: '📱',
     laptop: '💻',
-    tablet: '📱',
     mouse: '🖱️',
     keyboard: '⌨️',
     codetag:'</>',

@@ -78,6 +78,14 @@ export const portfolioData = {
             techBack: "Express.js, MySQL2, JWT",
             link: "#",
             desc: "Employee welfare benefits management platform."
+        },
+        {
+            id: 7,
+            title: "REST API for EMPLOYEES and STUDENTS",
+            tech: "",
+            techBack: "Express.js, MySQL2, JWT, Swagger",
+            link: "#",
+            desc: "Information system for employees and students."
         }
     ],
     tools: ["Jenkins (Auto Deploy)", "PM2", "GitHub", "Git"],
