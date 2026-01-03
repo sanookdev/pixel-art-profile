@@ -145,25 +145,32 @@ const moveLevel = (direction) => {
 };
 
 // Continuous movement logic
-const movementInterval = ref(null);
+// Continuous movement logic
+let animationFrameId = null;
 
 const startMoving = (direction) => {
-  // Move immediately once
-  moveLevel(direction);
+  // Clear any existing frame
+  if (animationFrameId) cancelAnimationFrame(animationFrameId);
   
-  // Clear any existing interval
-  if (movementInterval.value) clearInterval(movementInterval.value);
+  const move = () => {
+    // Scroll speed: adjustable factor based on screen width
+    // Faster speed as requested (0.015 = 1.5% of width per frame)
+    const speed = window.innerWidth * 0.015; 
+    
+    // Smooth scroll by small increment per frame
+    window.scrollBy(0, direction * speed);
+    
+    // Continue animation loop
+    animationFrameId = requestAnimationFrame(move);
+  };
   
-  // Start continuous movement with faster interval for smooth holding
-  movementInterval.value = setInterval(() => {
-    moveLevel(direction);
-  }, 200); // 200ms for smooth continuous movement when holding
+  move();
 };
 
 const stopMoving = () => {
-  if (movementInterval.value) {
-    clearInterval(movementInterval.value);
-    movementInterval.value = null;
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
   }
 };
 
@@ -521,6 +528,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/* Game Container Styling */
 .game-container {
   width: 100%;
   height: 100vh;
@@ -1542,6 +1550,76 @@ onMounted(() => {
     width: 50px;
     height: 50px;
     font-size: 1.4rem;
+  }
+}
+
+/* === TABLET OPTIMIZATIONS === */
+@media (min-width: 481px) and (max-width: 1024px) {
+  /* 1. Dynamic Level Width & Layout */
+  .level {
+    width: auto !important;
+    min-width: 100vw !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+    padding: 20px !important;
+  }
+
+  .content-layer {
+    width: max-content !important;
+    max-width: none !important;
+    flex-direction: column !important; /* Keep title on top */
+    justify-content: flex-start !important;
+    align-items: flex-start !important; /* Align content to start */
+    padding-top: 20px !important; 
+    overflow: visible !important;
+  }
+
+  /* 2. Titles */
+  .section-title {
+    position: sticky !important;
+    left: 20px;
+    margin-bottom: 30px !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+    z-index: 50 !important;
+  }
+
+  /* 3. Horizontal Content Layouts */
+  .content-wrapper,
+  .timeline, 
+  .projects-grid, 
+  .gallery-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 30px !important;
+    width: max-content !important;
+    padding-right: 100px !important; /* Spacing at end */
+  }
+
+  /* 4. About Section Aesthetics */
+  .level-bio .dialogue-box {
+    max-width: 600px !important;
+    width: 60vw !important; 
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    background-color: #fff !important;
+    border-image-slice: 3 !important;
+    border-image-width: 3 !important;
+  }
+  
+  /* 5. Experience/Projects Cards */
+  .exp-item, .project-card {
+    flex-shrink: 0 !important;
+    width: 350px !important;
+    min-width: 350px !important;
+  }
+  
+  /* Remove animations that might cause flicker/issues on tablet scroll */
+  .level .content-layer {
+    opacity: 1 !important;
+    animation: none !important;
   }
 }
 </style>
