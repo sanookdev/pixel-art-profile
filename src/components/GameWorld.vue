@@ -154,7 +154,7 @@ const startMoving = (direction) => {
   const move = () => {
     // Scroll speed: adjustable factor based on screen width
     // Faster speed as requested (0.015 = 1.5% of width per frame)
-    const speed = window.innerWidth * 0.015; 
+    const speed = window.innerWidth * 0.03; 
     
     // Smooth scroll by small increment per frame
     window.scrollBy(0, direction * speed);
@@ -540,7 +540,7 @@ onMounted(() => {
   position: absolute;
   bottom: 100px;
   left: 15%;
-  z-index: 1000;
+  z-index: 2000;
   pointer-events: none;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
@@ -606,6 +606,25 @@ onMounted(() => {
 }
 
 /* === GLOW EFFECTS === */
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffcc00; /* Bright yellow for visibility */
+  border-radius: 5px;
+  border: 2px solid #333; /* Contrast border */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffaa00;
+}
 .glow-text {
   text-shadow: 
     0 0 10px currentColor,
@@ -1040,12 +1059,20 @@ onMounted(() => {
 
 .project-container {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: rgba(255,255,255,0.95);
-  padding: 12px;
+  background: rgba(255,255,255,0.98); /* Less transparent */
+  padding: 15px;
+  border-radius: 12px !important; /* Softer rounded corners */
+  border: 4px solid #333; /* Explicit border */
 }
 
 .project-container .title {
-  font-size: 0.8rem !important;
+  font-size: 0.9rem !important; /* Larger title */
+  margin-bottom: 10px !important;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px dashed #ddd; /* Separator */
+  padding-bottom: 8px;
 }
 
 .project-container:hover {
@@ -1409,7 +1436,30 @@ onMounted(() => {
   }
   
   .project-card {
-    width: 95vw;
+    width: 90vw;
+    max-width: 340px; /* Slightly wider max-width */
+    margin-bottom: 20px;
+  }
+
+  .project-container {
+    padding: 15px !important; /* more padding */
+  }
+
+  .tech-badge {
+    font-size: 0.6rem;
+    padding: 4px 8px;
+    margin: 4px 0;
+  }
+  
+  .tech-label {
+    font-size: 0.65rem;
+  }
+
+  .desc-text {
+    font-size: 0.65rem; /* Larger font for readability */
+    line-height: 1.5;
+    min-height: auto; /* Allow auto height */
+    margin-top: 10px;
   }
   
   .social-links .nes-icon {
@@ -1431,7 +1481,7 @@ onMounted(() => {
     font-size: 0.5rem;
   }
   
-  /* Mobile Layout Fixes */
+  /* Mobile Layout Fixes (768px and below) */
   .content-wrapper {
     flex-direction: column !important;
     align-items: center !important;
@@ -1447,6 +1497,11 @@ onMounted(() => {
     padding-top: 80px;
     align-items: center;
     justify-content: flex-start;
+  }
+  
+  .level-bio .content-wrapper .nes-container {
+    width: 90vw !important;
+    margin: 10px auto !important;
   }
   
   .skills-block,
