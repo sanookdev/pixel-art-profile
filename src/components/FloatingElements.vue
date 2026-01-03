@@ -84,6 +84,8 @@ onMounted(() => {
   position: absolute;
   animation: float 3s ease-in-out infinite;
   filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .emoji-wrapper {

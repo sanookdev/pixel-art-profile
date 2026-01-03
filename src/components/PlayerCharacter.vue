@@ -209,12 +209,19 @@ defineProps({
   display: flex;
   align-items: flex-end;
   gap: 30px;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .character-wrapper.facing-left {
   transform: scaleX(-1);
 }
+
+/* Smooth mode transition - only on initial mount */
+.hero, .cat, .persian-cat, .car {
+  /* No infinite animation - just static now */
+}
+
+/* Only animate on first appearance, not on re-renders */
 
 /* ============ HERO CHARACTER ============ */
 .hero {

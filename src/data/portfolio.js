@@ -86,6 +86,14 @@ export const portfolioData = {
             techBack: "Express.js, MySQL2, JWT, Swagger",
             link: "#",
             desc: "Information system for employees and students."
+        },
+        {
+            id: 8,
+            title: "Real Estate Modern Website",
+            tech: "NuxtJs Vuejs TailwindCSS",
+            techBack: "Express.js, MySQL2, JWT, Swagger",
+            link: "https://real-estate-demo-zeta-navy.vercel.app/",
+            desc: "Real Estate Modern Website Platform."
         }
     ],
     tools: ["Jenkins (Auto Deploy)", "PM2", "GitHub", "Git"],

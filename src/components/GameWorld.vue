@@ -133,12 +133,13 @@ const updateProgress = (progress) => {
 const getScrollSpeedFactor = () => isFlying.value ? 0.8 : 1.5;
 
 const moveLevel = (direction) => {
-  const targetLevel = Math.max(0, Math.min(6, currentLevel.value + direction));
-  // Adjust targetY based on the speed factor
-  const targetY = targetLevel * window.innerWidth * getScrollSpeedFactor();
+  // Smooth incremental scroll instead of jumping to level
+  const scrollAmount = window.innerWidth * 0.2; // Scroll 20% of viewport at a time
+  const currentScroll = window.scrollY;
+  const targetY = currentScroll + (direction * scrollAmount);
   
   window.scrollTo({
-    top: targetY,
+    top: Math.max(0, targetY),
     behavior: 'smooth'
   });
 };
@@ -153,10 +154,10 @@ const startMoving = (direction) => {
   // Clear any existing interval
   if (movementInterval.value) clearInterval(movementInterval.value);
   
-  // Start continuous movement
+  // Start continuous movement with faster interval for smooth holding
   movementInterval.value = setInterval(() => {
     moveLevel(direction);
-  }, 300); // 300ms delay between steps
+  }, 200); // 200ms for smooth continuous movement when holding
 };
 
 const stopMoving = () => {
@@ -531,7 +532,7 @@ onMounted(() => {
 
 .player-fixed {
   position: absolute;
-  bottom: 30px;
+  bottom: 100px;
   left: 15%;
   z-index: 1000;
   pointer-events: none;
@@ -541,6 +542,8 @@ onMounted(() => {
 .world-track {
   display: flex;
   height: 100%;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .level {
@@ -1460,8 +1463,34 @@ onMounted(() => {
   }
 }
 
+/* Tablet: Show mobile controls on iPad */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .mobile-controls {
+    display: flex !important;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 120px;
+    left: 30px;
+    right: 30px;
+    z-index: 2000;
+  }
+  
+  .nav-btn {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    opacity: 0.9;
+    touch-action: manipulation;
+    user-select: none;
+  }
+}
+
 /* Desktop: Hide mobile controls */
-@media (min-width: 481px) {
+@media (min-width: 1025px) {
   .mobile-controls {
     display: none;
   }

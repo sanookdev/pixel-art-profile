@@ -26,7 +26,7 @@ onMounted(() => {
   }
   
   // Generate clouds
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     clouds.value.push({
       id: i,
       x: i * 25 + Math.random() * 10,
@@ -172,6 +172,8 @@ onMounted(() => {
 .pixel-cloud {
   position: absolute;
   animation: cloudFloat linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .cloud-part {
