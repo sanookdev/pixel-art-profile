@@ -145,25 +145,31 @@ const moveLevel = (direction) => {
 };
 
 // Continuous movement logic
-const movementInterval = ref(null);
+let animationFrameId = null;
 
 const startMoving = (direction) => {
-  // Move immediately once
-  moveLevel(direction);
+  // Clear any existing frame
+  if (animationFrameId) cancelAnimationFrame(animationFrameId);
   
-  // Clear any existing interval
-  if (movementInterval.value) clearInterval(movementInterval.value);
+  const move = () => {
+    // Scroll speed: adjustable factor based on screen width
+    // Faster speed as requested (0.015 = 1.5% of width per frame)
+    const speed = window.innerWidth * 0.015; 
+    
+    // Smooth scroll by small increment per frame
+    window.scrollBy(0, direction * speed);
+    
+    // Continue animation loop
+    animationFrameId = requestAnimationFrame(move);
+  };
   
-  // Start continuous movement with faster interval for smooth holding
-  movementInterval.value = setInterval(() => {
-    moveLevel(direction);
-  }, 200); // 200ms for smooth continuous movement when holding
+  move();
 };
 
 const stopMoving = () => {
-  if (movementInterval.value) {
-    clearInterval(movementInterval.value);
-    movementInterval.value = null;
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
   }
 };
 
@@ -1270,6 +1276,11 @@ onMounted(() => {
     height: 140px;
     margin-bottom: 20px !important; /* Fix overlap */
   }
+
+  .level-start .nes-text.is-success.glow-text {
+    font-size: 0.8rem; /* Prevent name wrapping/too large */
+    display: block; /* Ensure it takes its own line if needed */
+  }
   
   /* DialogueBox */
   .nes-container {
@@ -1385,11 +1396,16 @@ onMounted(() => {
   .nes-container {
     padding: 10px !important;
     font-size: 0.55rem;
+    margin: 0 auto 10px auto !important;
+    width: 90vw !important;
   }
   
   .section-title {
-    font-size: 0.7rem;
-    padding: 8px 12px;
+    font-size: 0.8rem;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
   }
   
   .project-card {
@@ -1416,6 +1432,14 @@ onMounted(() => {
   }
   
   /* Mobile Layout Fixes */
+  .content-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100%;
+  }
+
+  .level-bio .content-layer,
   .level-skills .content-layer,
   .level-projects .content-layer,
   .level-lifestyle .content-layer,
